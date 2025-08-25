@@ -127,3 +127,100 @@
 - lokacija (kancelarije, serveri, interni dokumenti)
 - oprema zaposlenih (radne stanice, telefoni, USB)
 - WiFi zaposlenih (udaljeni rad)
+
+## D. Dijagrami toka podataka
+
+### Context diagram
+
+![Context diagram](diagrams/level0-context-diagram.png)
+
+### Level 1 diagram
+
+![Level 1 diagram](diagrams/level1-diagram.png)
+
+## E. Analiza pretnji i mitigacije
+
+### Lažno predstavljanje (spoofing)
+
+#### Od zaposlenih ka DMZ
+
+- HR → Employee API gateway
+  - Lažni HR nalog pristupa i upravlja privatnim podacima zaposlenih
+- Klijentska podrška → Employee API gateway
+  - Napadač imitira agenta podrške i time dobija CRUD nad klijentima ili rezervacijama
+- Agenti za saradnju → Employee API gateway
+  - Lažni agent dobija CRUD pristup podacima poslovnih partnera
+  - Lažni agent dobija pristup osetljivim podacima ugovora sa partnerima i podacima poslovanja
+
+Mitigations: MFA, SSO i IP restrikcije (samo iz mreža kompanije)
+
+#### Od klijenata i spoljnih partnera ka DMZ
+
+- Klijent → Production API gateway
+  - Napadač se predstavlja kao neko i upravlja podacima klijenta i zahtevima rezervacija
+- Spoljni partner → Production API gateway
+  - Neko imitira partnera: upravlja statusima rezervacija i dostupnim uslugama
+
+Mitigations: MFA, TLS i Certificates za spoljne partnere
+
+#### Od platnih procesora ka DMZ
+
+- Platni procesor → Payment proxy
+  - Lažni platni procesor prikuplja platne podatke klijenata ili šalje lažne rezultate transakcija
+
+Mitigations: mutual TLS i enkripcija podataka
+
+#### DMZ procesi međusobno i ka internim procesima
+
+- API gateways → IDP
+  - Lažni gateway pokušava da se predstavi IDP
+- Payment proxy → Produkcioni mikroservisi
+- IDP → baza kredencijala
+  - Lažni IDP pokušava da čita i upisuje u bazu kredencijala
+
+Mitigations: mutual TLS i IP restrikcije
+
+### Izmena podataka (Tampering)
+
+- HR → Employee API → IDP → Portal zaposlenih → Baza zaposlenih
+- Klijentska podrška → Employee API → IDP → Upravljanje podacima → Produkciona baza
+- Agenti za saradnju → Employee API → IDP → Upravljanje podacima → Produkciona baza
+- Klijenti → Production API → IDP → Mikroservisi
+- Klijenti → Production API → IDP → Mikroservisi → Payment Proxy → Platni procesori
+- Platni procesori → Payment Proxy → Mikroservisi
+- Platni procesori → Payment proxy → Mikroservisi
+- Spoljni partneri → Production API → IDP → Mikroservisi
+
+Mitigations: End-to-end enkripcija (TLS), parametrizovani upiti (SQL-injection), write-ahead-logs
+
+### Poricanje radnji (Repundation)
+
+- Zaposleni i HR koji menjaju svoje ili tuđe podatke
+- Klijenti i spoljni partneri koji menjaju svoje podatke ili poriču ugovore
+- Agenti za saradnju sa partnerima poriču da su uneli određene ugovorne podatke
+
+Mitigations: audit logovi sa timestampom
+
+### Otkrivanje podataka (Information disclosure)
+
+- Lični podaci klijenata koji mogu da procure tokom slanja
+- Lični podaci zaposlenih koji mogu da procure
+- Platni podaci koji budu kompromitovani prilikom procesa
+- Detalji o poslovnim tajnama i ugovorima koji budu presrednuti
+
+Mitigations: End-to-end enkripcija (TLS), maskiranje osetljivih podataka
+
+### Denial of Service (DoS)
+
+- Preopterećenje Employee API gateway i onemogućivanje rada
+- Preopterećenje Production API gateway
+- Prevelik broj zahteva ka IDP
+
+Mitigations: rate limiting, throttling, horizontalno skaliranje i kontrola IP adresa (gateways ka IDP)
+
+### Eskalacija privilegija
+
+- HR i zaposleni koji zloupotrebljuju pristup sistemu i kontrolišu podatke i servise
+- Klijenti i spoljni partneri koji dobiju interni pristup (DMZ) ili kontrolu nad podacima
+
+Mitigations: RBAC, ABAC i dobra segregacija uloga
