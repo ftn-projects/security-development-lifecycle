@@ -84,7 +84,7 @@ Koristeći Burp Suite, možemo detaljnije da vidimo kako izgleda  `GET` zahtev (
 
 `GET /filter?category=Lifestyle`
 
-![burp](images/SQLTask11.png)
+<p align="center"><img src="images/SQLTask11.png" alt="burp"></p>
 <p align='center'><i>slika 1.1 - GET request</i></p>
 
 Ovo možemo da iskoristimo tako što ćemo modifikovati GET request na sledeći način (slika 1.2):
@@ -99,7 +99,7 @@ SELECT * FROM products WHERE category = 'Lifestyle' OR 1=1 -- AND released = 1
 
 Ovim upitom dobavljamo sve proizvode određene kategorije zbog izraza `OR 1=1` koji je uvek tačan. Svi uslovi posle `--` postaju deo komentara i neće imati uticaj na rezultat.
 
-![burp](images/SQLTask12.png)
+<p align="center"><img src="images/SQLTask12.png" alt="burp"></p>
 <p align='center'><i>slika 1.2 - izmenjen GET request</i></p>
 
 ## **2. SQL injection vulnerability allowing login bypass**
@@ -110,14 +110,14 @@ Kao korisničko ime ćemo koristiti `administrator'--`
 
 Ovim eliminišemo bilo koje uslove nakon provere korisničkog imena, što u ovom slučaju uključuje lozinku, omogućavajući nam pristup administratorskom profilu.
 
-![input](images/SQLTask21.png)
+<p align="center"><img src="images/SQLTask21.png" alt="input"></p>
 <p align='center'><i>slika 2.1 - unos korisničkog imena</i></p>
 <br/>
 <br/>
 <br/>
 <br/>
 
-![input](images/SQLTask22.png)
+<p align="center"><img src="images/SQLTask22.png" alt="input"></p>
 <p align='center'><i>slika 2.2 - uspešan pristup administratorskom profilu</i></p>
 
 ## **3. SQL injection UNION attack, determining the number of columns returned by the query**
@@ -128,28 +128,28 @@ Na sličan način modifikujemo GET request kao i do sada:
 
 `GET /filter?category=Accessories'+UNION+SELECT+NULL,NULL--`
 
-![burp](images/SQLTask31.png)
+<p align="center"><img src="images/SQLTask31.png" alt="burp"></p>
 <p align='center'><i>slika 3.1 - GET request sa 2 kolone</i></p>
 <br/>
 <br/>
 <br/>
 <br/>
 
-![failed request](images/SQLTask32.png)
+<p align="center"><img src="images/SQLTask32.png" alt="failed request"></p>
 <p align='center'><i>slika 3.2 - neuspešan zahtev</i></p>
 
 Rezultat ovog zahteva je greška, što znači da naša tabela nema 2 kolone, te ćemo u sledećem zahtevu dodati još jednu kolonu
 
 `GET /filter?category=Accessories'+UNION+SELECT+NULL,NULL,NULL--`
 
-![burp](images/SQLTask33.png)
+<p align="center"><img src="images/SQLTask33.png" alt="burp"></p>
 <p align='center'><i>slika 3.3 - GET request sa 3 kolone</i></p>
 <br/>
 <br/>
 <br/>
 <br/>
 
-![burp](images/SQLTask34.png)
+<p align="center"><img src="images/SQLTask34.png" alt="burp"></p>
 <p align='center'><i>slika 3.4 - GET request je uspešan</i></p>
 
 Pošto je ovaj zahtev uspešan, to znači da smo pogodili broj kolona
@@ -164,7 +164,7 @@ Izmenićemo GET zahtev iz prethodnog zadatka tako što ćemo umesto NULL, u jedn
 
 Ako je zahtev uspešan, to znači da je prva kolona tekstualnog tipa, u suprotnom menjamo sledeću NULL vrednost sa tekstualnom vrednošću.
 
-![burp](images/SQLTask41.png)
+<p align="center"><img src="images/SQLTask41.png" alt="burp"></p>
 <p align='center'><i>slika 4.1 - GET request sa prvom tekstualnom kolonom</i></p>
 
 ## **5. SQL injection UNION attack, retrieving data from other tables**
@@ -175,10 +175,7 @@ Na osnovu prethodna 2 zadatka, možemo da konstruišemo sledeći GET request:
 
 `GET /filter?category=Accessories'+UNION+SELECT+username,+password+FROM+users--`
 
-![result](images/SQLTask51.png)
+<p align="center"><img src="images/SQLTask51.png" alt="result"></p>
 <p align='center'><i>slika 5.1 - rezultat GET requesta</i></p>
 
 Na ovaj način smo dobili kredencijale administratora aplikacija.
-
-
-

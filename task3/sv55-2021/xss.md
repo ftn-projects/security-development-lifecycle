@@ -104,7 +104,7 @@ Ovo možemo da iskoristimo tako što ćemo kao vrednost uneti sledeće
 "><svg onload=alert(1)>
 ```
 
-![input](images/XSSTask11.png)
+<p align="center"><img src="images/XSSTask11.png" alt="input"></p>
 <p align='center'><i>slika 1.1 - unos vrednosti</i></p>
 <br/>
 
@@ -118,47 +118,47 @@ nakon čega će DOM izgledati ovako:
 <br/>
 <br/>
 
-![DOM](images/XSSTask12.png)
+<p align="center"><img src="images/XSSTask12.png" alt="DOM"></p>
 <p align='center'><i>slika 1.2 - DOM stablo nakon unosa</i></p>
 
 <br/>
 <br/>
 
-![alert](images/XSSTask13.png)
+<p align="center"><img src="images/XSSTask13.png" alt="alert"></p>
 <p align='center'><i>slika 1.3 - Rezultat našeg unosa</i></p>
 
 ## **2. DOM XSS in jQuery anchor `href` attribute sink using `location.search` source**
 
 Stranica na osnovu parametra `returnPath` menja `href` atribut 'Back' dugmeta. Ovo možemo upotrebiti tako što ćemo kao vrednost u URL-u proslediti Javascript kod.
 
-![path](images/XSSTask21.png)
+<p align="center"><img src="images/XSSTask21.png" alt="path"></p>
 <p align='center'><i>slika 2.1 - Primer ispravnog requesta</i></p>
 <br/>
 <br/>
 
-![DOM](images/XSSTask22.png)
+<p align="center"><img src="images/XSSTask22.png" alt="DOM"></p>
 <p align='center'><i>slika 2.2 - DOM stablo nakon ispravnog requesta</i></p>
 <br/>
 <br/>
 
-![path](images/XSSTask23.png)
+<p align="center"><img src="images/XSSTask23.png" alt="path"></p>
 <p align='center'><i>slika 2.3 - Primer requesta sa ubačenim Javascript kodom</i></p>
 <br/>
 <br/>
 
-![DOM](images/XSSTask24.png)
+<p align="center"><img src="images/XSSTask24.png" alt="DOM"></p>
 <p align='center'><i>slika 2.4 - Rezultat requesta sa ubačenim Javascript kodom</i></p>
 
 ## **3. DOM XSS in `document.write` sink using source `location.search` inside a select element**
 
 Stranica na osnovu parametra `storeId` iz URL-a dodaje nove vrednosti u drop-down listu.
 
-![path](images/XSSTask31.png)
+<p align="center"><img src="images/XSSTask31.png" alt="path"></p>
 <p align='center'><i>slika 3.1 - Očekivano korišćenje parametra 'storeId'</i></p>
 <br/>
 <br/>
 
-![result](images/XSSTask32.png)
+<p align="center"><img src="images/XSSTask32.png" alt="result"></p>
 <p align='center'><i>slika 3.2 - vrednost iz storeId parametra je dodata u drop-down listu</i></p>
 <br/>
 <br/>
@@ -171,7 +171,7 @@ product?productId=1&storeId="></select><img%20src=1%20onerror=alert(1)>
 
 Stranica će dodati sliku, pri čijem učitavanju će se izvršiti naš kod.
 
-![result](images/XSSTask33.png)
+<p align="center"><img src="images/XSSTask33.png" alt="result"></p>
 <p align='center'><i>slika 3.3 - rezultat izvršavanja umetnutog Javascript koda u URL putanji</i></p>
 
 
@@ -179,12 +179,12 @@ Stranica će dodati sliku, pri čijem učitavanju će se izvršiti naš kod.
 
 Ponekad veb aplikacije ne dozvoljavaju dodavanje običnih HTML tagova. Ako bi pokušali metode koje smo koristili u nekom od prethodnih zadataka, dobili bismo grešku.
 
-![path](images/XSSTask41.png)
+<p align="center"><img src="images/XSSTask41.png" alt="path"></p>
 <p align='center'><i>slika 4.1 - Unos vrednosti kako bi se ubacio proizvoljni HTML tag</i></p>
 <br/>
 <br/>
 
-![result](images/XSSTask42.png)
+<p align="center"><img src="images/XSSTask42.png" alt="result"></p>
 <p align='center'><i>slika 4.2 - greška jer uneti tag nije dozvoljen</i></p>
 <br/>
 <br/>
@@ -198,19 +198,19 @@ Našem custom tagu ćemo dodati određene atribute. Cilj nam je da se naš kod i
 
 Kada unesemo naš custom tag, dobićemo url koji mu odgovara. Preostaje još da na njegov kraj dodamo `#x`, čime targetujemo naš custom tag pomoću njegovog id-a i on dobija focus.
 
-![input](images/XSSTask43.png)
+<p align="center"><img src="images/XSSTask43.png" alt="input"></p>
 <p align='center'><i>slika 4.3 - unos custom taga</i></p>
 <br/>
 <br/>
 
-![result](images/XSSTask44.png)
+<p align="center"><img src="images/XSSTask44.png" alt="result"></p>
 <p align='center'><i>slika 4.4 - rezultat izvršavanja našeg koda</i></p>
 <br/>
 <br/>
 
 Postoji i drugi način da se reši ovaj zadatak koji je obavezan kako bi ga platforma detektovala kao uspešno odrađenog. Ideja oba načina je ista.
 
-![burp](images/XSSTask45.png)
+<p align="center"><img src="images/XSSTask45.png" alt="burp"></p>
 <p align='center'><i>slika 4.5 - rešavanje istog zadatka preko burp suit-a</i></p>
 <br/>
 <br/>
@@ -221,51 +221,51 @@ Jedan vid odbrane od ovog napada jeste "escapovanje" specijalnih karaktera poput
 
 Pre svega, pokušajmo da ubacim naš javascript kod sa pretpostavkom da aplikacija nema implementirane tehnike odbrane od ovog napada.
 
-![input](images/XSSTask51.png)
+<p align="center"><img src="images/XSSTask51.png" alt="input"></p>
 <p align='center'><i>slika 5.1 - unos normalnih vrednosti</i></p>
 <br/>
 <br/>
 
-![script](images/XSSTask52.png)
+<p align="center"><img src="images/XSSTask52.png" alt="script"></p>
 <p align='center'><i>slika 5.2 - script tag nakon unešene normalne vrednosti</i></p>
 <br/>
 <br/>
 
 Pokušaćemo da umetnemo naš Javascript kod kao što smo i u prethodnih zadacima
 
-![input](images/XSSTask53.png)
+<p align="center"><img src="images/XSSTask53.png" alt="input"></p>
 <p align='center'><i>slika 5.3 - unos javascript koda dosadašnjim metodatama</i></p>
 <br/>
 <br/>
 
-![script](images/XSSTask54.png)
+<p align="center"><img src="images/XSSTask54.png" alt="script"></p>
 <p align='center'><i>slika 5.4 - aplikacija escapuje ' karakter</i></p>
 <br/>
 <br/>
 
 Šta ako pokušamo samo da escapujemo `'` karakter tako što sami dodamo `\` na početak?
 
-![input](images/XSSTask55.png)
+<p align="center"><img src="images/XSSTask55.png" alt="input"></p>
 <p align='center'><i>slika 5.5 - unos javascript koda dodavanjem backslash-a na početak</i></p>
 <br/>
 <br/>
 
-![script](images/XSSTask56.png)
+<p align="center"><img src="images/XSSTask56.png" alt="script"></p>
 <p align='center'><i>slika 5.6 - aplikacija escapuje \ karakter</i></p>
 <br/>
 <br/>
 
 Međutim, šta ako pokušamo da unesemo karaktere `< >`? Ovo bismo mogli da iskoristimo da zatvorimo script tag u kome se izvršava kod u tom trenutku, i dodamo novi koji će sadržati naš kod.
 
-![input](images/XSSTask57.png)
+<p align="center"><img src="images/XSSTask57.png" alt="input"></p>
 <p align='center'><i>slika 5.7 - unos javascript pomoću script tag-a</i></p>
 <br/>
 <br/>
 
-![script](images/XSSTask58.png)
+<p align="center"><img src="images/XSSTask58.png" alt="script"></p>
 <p align='center'><i>slika 5.8 - aplikacija NE escapuje > karakter</i></p>
 <br/>
 <br/>
 
-![DOM](images/XSSTask59.png)
+<p align="center"><img src="images/XSSTask59.png" alt="DOM"></p>
 <p align='center'><i>slika 5.9 - novi script tag je dodat</i></p>
