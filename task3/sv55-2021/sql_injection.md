@@ -77,7 +77,7 @@ Ovim se obezbeđuje da se korisnički unos tretira isključivo kao podatak, a ne
 SQL upit koji aplikacija izvršava prilikom dobavljanja proizvoda:
 
 ```SQL
-SELECT * FROM products WHERE category = 'Lifestzle' AND released = 1
+SELECT * FROM products WHERE category = 'Lifestyle' AND released = 1
 ```
 
 Koristeći Burp Suite, možemo detaljnije da vidimo kako izgleda  `GET` zahtev (slika 1.1):
