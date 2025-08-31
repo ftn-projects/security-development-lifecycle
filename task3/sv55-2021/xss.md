@@ -219,7 +219,7 @@ Postoji i drugi način da se reši ovaj zadatak koji je obavezan kako bi ga plat
 
 Jedan vid odbrane od ovog napada jeste "escapovanje" specijalnih karaktera poput `'` ili `\`
 
-Pre svega, pokušajmo da ubacim naš javascript kod sa pretpostavkom da aplikacija nema implementirane tehnike odbrane od ovog napada.
+Pre svega, pokušajmo da ubacimo naš javascript kod sa pretpostavkom da aplikacija nema implementirane tehnike odbrane od ovog napada.
 
 <p align="center"><img src="images/XSSTask51.png" alt="input"></p>
 <p align='center'><i>slika 5.1 - unos normalnih vrednosti</i></p>
