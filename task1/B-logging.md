@@ -156,7 +156,7 @@ aws logs put-retention-policy
 Ako korisnik želi da sačuva određene logove trajno, može ih eksportovati u S3
 
 **Analiza i pretraga**
-CloudWatch nudi mogućnost pretrage logova po tekstu, filterija i vremenskom opsegu. Omogućava pravljenje alarma, grafika, automatskih obaveštenja.
+CloudWatch nudi mogućnost pretrage logova po tekstu, filterima i vremenskom opsegu. Omogućava pravljenje alarma, grafika, automatskih obaveštenja.
 
 #### Google Cloud - Cloud Logging
 
