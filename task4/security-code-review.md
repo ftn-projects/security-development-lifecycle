@@ -40,4 +40,4 @@ Druga bitna ranjivost je korišćenje **Smarty** template-a. Njegov posao je da 
 {php}exec('pkill -f apache2');{/php}
 ```
 
-Poruka će se bez provere sačuvati. *MOTD* poruke se prikazuju svim korisnicima nakon prijave na sistem. Kada se korisnik prijavi, aplikacija će pokušati da mu prikaže poruku dana i maliciozni kod će zbog **Smarty**-ija biti izvršen. 
+Poruka će se bez provere sačuvati. *MOTD* poruke se prikazuju svim korisnicima nakon prijave na sistem. Kada se korisnik prijavi i svaki put kada se učita index stranica, aplikacija će pokušati da mu prikaže poruku dana i maliciozni kod će zbog **Smarty**-ija biti izvršen. 
