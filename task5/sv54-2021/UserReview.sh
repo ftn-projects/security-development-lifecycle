@@ -46,7 +46,7 @@ print_rules() {
 
 print_rules /etc/sudoers
 
-if [ -d /etc/eudoers.d ]; then
+if [ -d /etc/sudoers.d ]; then
 	for file in /etc/sudoers.d/*; do
 		[ -f "$file" ] && print_rules "$file"
 	done
