@@ -15,6 +15,8 @@ Ukoliko koristimo sajt za [PGP dekodiranje](https://cirw.in/gpg-decoder/#-----BE
 
 *What is the full email address used by the attacker?*: ```SakuraSnowAngel83@protonmail.com```
 
+---
+
 Ime napadača se može pronaći na njihovom [twitter nalogu](https://x.com/sakuraloveraiko). Na jednoj od objava se predstavljaju kao @AikoAbe3. Iz *username*-a zaključujemo ime.
 
 ![introduction](images\image-4.png)
@@ -47,7 +49,7 @@ Kod aerodroma na kom je napadač imao poslednje presedanje takođe možemo prona
 
 ![yet another post](images\image-12.png)
 
-[Pretragom](https://www.google.com/search?q=japan+airlines+jal+first+class+lounge&sca_esv=60ddcbf7b678fd31&udm=&lns_surface=44&biw=767&bih=703&hl=en-US&sxsrf=AE3TifM8vdDAfHOHazZaajdIeyxc2G7NbA%3A1758652466706&ei=MujSaJntKq-fkdUPsuKPwAM&oq=japan+airlines+jal+first+&gs_lp=Egxnd3Mtd2l6LXNlcnAiGWphcGFuIGFpcmxpbmVzIGphbCBmaXJzdCAqAggAMgYQABgWGB4yCBAAGBYYChgeMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTIIEAAYgAQYogQyCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogRIozhQ_QxY3i5wAHgAkAEAmAHDAaAB3R-qAQQwLjI3uAEDyAEA-AEBmAIboAL5IqgCCsICBRAAGMoFwgIQEC4YsAMYxwEYJxjqAhivAcICChAjGLADGCcY6gLCAgoQIxiABBgnGIoFwgIEECMYJ8ICEBAjGPAFGIAEGCcYyQIYigXCAhEQLhiABBiRAhjHARiKBRivAcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAgUQLhiABMICChAAGIAEGEMYigXCAg0QLhiABBhDGNQCGIoFwgIOEC4YgAQYxwEYmAUYrwHCAgsQLhiABBjHARivAcICERAuGIAEGJECGNEDGMcBGIoFwgILEAAYgAQYkQIYigXCAiAQLhiABBiRAhjRAxjHARiKBRiXBRjcBBjeBBjgBNgBAcICChAAGIAEGBQYhwLCAggQABiiBBiJBZgD3gHxBd7IVaq5moXgkAYKugYGCAEQARgUkgcGMC4yMy40oAetsAKyBwYwLjIzLjS4B_kiwgcGMy0yMy40yAf6Ag&sclient=gws-wiz-serp) teksta sa slike (*apan airlines jal first class lounge*) pronalazimo *review* sa sajta [*The Luxury Traveler*](https://theluxurytraveller.com/2016/09/jal-lounge-first-class-tokyo-hnd-airport-feb-2015/) u kom pronalazimo kod aerodroma.
+[Pretragom](https://www.google.com/search?q=japan+airlines+jal+first+class+lounge&sca_esv=60ddcbf7b678fd31&udm=&lns_surface=44&biw=767&bih=703&hl=en-US&sxsrf=AE3TifM8vdDAfHOHazZaajdIeyxc2G7NbA%3A1758652466706&ei=MujSaJntKq-fkdUPsuKPwAM&oq=japan+airlines+jal+first+&gs_lp=Egxnd3Mtd2l6LXNlcnAiGWphcGFuIGFpcmxpbmVzIGphbCBmaXJzdCAqAggAMgYQABgWGB4yCBAAGBYYChgeMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTIIEAAYgAQYogQyCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogRIozhQ_QxY3i5wAHgAkAEAmAHDAaAB3R-qAQQwLjI3uAEDyAEA-AEBmAIboAL5IqgCCsICBRAAGMoFwgIQEC4YsAMYxwEYJxjqAhivAcICChAjGLADGCcY6gLCAgoQIxiABBgnGIoFwgIEECMYJ8ICEBAjGPAFGIAEGCcYyQIYigXCAhEQLhiABBiRAhjHARiKBRivAcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAgUQLhiABMICChAAGIAEGEMYigXCAg0QLhiABBhDGNQCGIoFwgIOEC4YgAQYxwEYmAUYrwHCAgsQLhiABBjHARivAcICERAuGIAEGJECGNEDGMcBGIoFwgILEAAYgAQYkQIYigXCAiAQLhiABBiRAhjRAxjHARiKBRiXBRjcBBjeBBjgBNgBAcICChAAGIAEGBQYhwLCAggQABiiBBiJBZgD3gHxBd7IVaq5moXgkAYKugYGCAEQARgUkgcGMC4yMy40oAetsAKyBwYwLjIzLjS4B_kiwgcGMy0yMy40yAf6Ag&sclient=gws-wiz-serp) teksta sa slike (*japan airlines jal first class lounge*) pronalazimo *review* sa sajta [*The Luxury Traveler*](https://theluxurytraveller.com/2016/09/jal-lounge-first-class-tokyo-hnd-airport-feb-2015/) u kom pronalazimo kod aerodroma.
 
 ![hnd](images\image-13.png)
 
@@ -59,7 +61,7 @@ Jezero koje se vidi iz aviona takođe pronalazimo pomoću jedne od [*twitter* ob
 
 ![map twitter](images\image-8.png)
 
-Pomoću [*reverse image search*-a](https://www.google.com/search?vsrid=CJ-Iucmyn4GulAEQAhgBIiRiYjdmMWYxYi04NjYxLTRiY2ItOTY4Zi01YjIxNWI3YWIxZGUyBiICd2UoCjiOqZyIwO-PAw&vsint=CAIqDAoCCAcSAggKGAEgATojChYNAAAAPxUAAAA_HQAAgD8lAACAPzABEIAIGL0EJQAAgD8&udm=26&lns_mode=un&source=lns.web.gsbubb&vsdim=1024,573&gsessionid=7414zq9o5uMd4IjmPDSyX-U_CE9-1UsAsrPjSBdU4kEA4_L0EHmiLQ&lsessionid=BfoK85rz3soV_nP34ubtHU5hxcp27hjvEXgknZRWUvKkS9hkuB9A3A&lns_surface=26&authuser=0&lns_vfs=e&qsubts=1758651685361&biw=1536&bih=703&hl=sr), pronalazimo [*getty images*](https://www.gettyimages.com/videos/castle-outline) sajt, na kom se nalazi dosta videa sa imenom lokacije u blizini slike. 
+Pomoću *reverse image search*-a, pronalazimo [*getty images*](https://www.gettyimages.com/videos/castle-outline) sajt, na kom se nalazi dosta videa sa imenom lokacije u blizini slike. 
 
 ![getty](images\image-9.png)
 
