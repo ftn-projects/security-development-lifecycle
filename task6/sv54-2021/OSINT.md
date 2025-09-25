@@ -32,7 +32,7 @@ Task: The original photographer of this picture commented the flag on his post. 
 
 ![image](images/EYkH3wnXsAAtG6j.jpeg)
 
-Koristeći [*reverse image search*](https://www.google.com/search/about-this-image?img=H4sIAAAAAAAAAFPy5HLnaGrvvb_izLPVXAJMEoxKKkZpyeYmaYmWuibJKYm6JkZmSboWycbJuslGJimplqaWqYaGpkZsSkzlqRp8FtNWbv78_F0_cwADAPp334NLAAAA&sa=X&ved=2ahUKEwiN7rWK6O6PAxVqWqQEHbDzJ7kQs6gLegQIDxAB) funkciju, možemo pronaći ovu sliku na [*iStock*](https://www.istockphoto.com/search/2/image-film?phrase=the+coming+storm) sajtu.
+Koristeći *reverse image search* funkciju, možemo pronaći ovu sliku na [*iStock*](https://www.istockphoto.com/search/2/image-film?phrase=the+coming+storm) sajtu.
 
 ![reverese image search](images/z21.png)
 
