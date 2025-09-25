@@ -14,7 +14,7 @@ Analizom koda za autorizaciju, primećeno je da se proverava samo da li je usern
 
 ## Izvršenje proizvoljnog koda na serveru
 
-Analizom koda možemo primetiti par raanjivosti prilikom promene *Message of the day* poruke i njenog učitavanja. Za promenu poruke neophodno je da korisnik ima privilegije admina koje su dobijene u prethodnom zadatku. Poruka se pre slanja ne proverava i moguće je poslati bilo koji tekst ili kod koji se odmah unosi u *motd.tpl*. Ova ranjivost može dovesti do **XSS** i **RCE** napada. 
+Analizom koda možemo primetiti par ranjivosti prilikom promene *Message of the day* poruke i njenog učitavanja. Za promenu poruke neophodno je da korisnik ima privilegije admina koje su dobijene u prethodnom zadatku. Poruka se pre slanja ne proverava i moguće je poslati bilo koji tekst ili kod koji se odmah unosi u *motd.tpl*. Ova ranjivost može dovesti do **XSS** i **RCE** napada. 
 
 ```php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
