@@ -2,6 +2,17 @@
 
 ## Zaobilaženje mehanizma autentikacije
 
+Analizom koda stranice **forgotusername.php** primećena je kritična ranjivost SQLi u mehanizmu za oporavak korisničkog imena.
+Kod ne vrši validaciju korisničkog unosa i direktno ga ubacuje u SQL upit bez parametrizacije ili escaping-a.
+```php
+$ret = pg_query($db, "select * from users where username='".$username."';");
+```
+
+Ova ranjivost nam omogućava da izvršimo proizvoljne SQL komande. 
+
+Uočili smo da aplikacija proverava da li korisnik ima admin privilegije tako što poredi njegov username sa stringom "admin".
+Takođe, otkrili smo da aplikacija dozvoljava kreiranje korisnika sa već postojećim username-om, te možemo dodati novog admin korisnika.
+
 ## Eskalacija privilegija do administratorskog nivoa
 
 Analizom koda za autorizaciju, primećeno je da se proverava samo da li je username korisnika admin. Budući da nema provere dupliranih username, uspešno smo kreirali nalog napadača pomoću SQL injekcije. Zbog diversifikacije, za metod eskalacije privilegija je ipak izabran XSS u vidu skripte koja bi se učitala samo u podacima koje vidi administrator - u tabeli korisnika. Svi korisnici mogu da ažuriraju opis svog profila pri čemu ne postoji validacija unosa. Kasnije se ti podaci koriste na nesiguran način prilikom učitavanja tabele pri čemu dolazi do **persisted XSS** ranjivosti.
