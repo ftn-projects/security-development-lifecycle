@@ -4,6 +4,19 @@
 
 Zadatak postavlja pitanje `Are you ready to begin?`. Dedukcijom instrukcija je moguće zaključiti da treba da se unese `Let's Go!`.
 
+## Task 2 - Tip-off
+
+Potrebno je pronaći korisničko ime na osnovu podataka slike.
+
+![originalna slika](images/image21.png)
+
+Sama slika nam ne daje mnogo informacija o napadaču.
+
+![inspect slika](images/image22.png)
+
+Ako pogledamo meta podatke slike, možemo uočiti vrednost `/home/SakuraSnowAngelAiko/Desktop/pwnedletter.png`, odakle možemo da zaključimo korisničko ime napadača.
+
+**What username does the attacker go by?**: `SakuraSnowAngelAiko`
 
 ## Task 3 - Reconnaissance
 
@@ -30,6 +43,43 @@ Ime napadača se može pronaći na njihovom [twitter nalogu](https://x.com/sakur
 ![introduction](images/image-4.png)
 
 *What is the attacker's full real name?*: ```Aiko Abe```
+
+## Task 4 - Unveil
+
+Ako odemo na github repozitorijum od usera `sakurasnowangelaiko`, u listi njegovih repozitorijuma možemo da vidimo repozitorijum pod nazivom `ETH` (Etherium)
+
+![github ETH repo](images/image41.png)
+
+
+**What cryptocurrency does the attacker own a cryptocurrency wallet for?**: `Etherium`
+
+---
+
+Ako uđemo u taj repozitorijum, vidimo `miningscript` fajl, koji nam za sada ne otkriva ništa.
+
+![github ETH commit 1](images/image42.png)
+
+Međutim, ako pogledamo commit history, možemo da vidimo da je korisnik prvobitno stavio svoje prave podatke u ovaj fajl, među kojima je i cryptocurrency wallet address.
+
+![github ETH commit 2](images/image43.png)
+
+**What is the attacker's cryptocurrency wallet address?**: `0xa102397dbeeBeFD8cD2F73A89122fCdB53abB6ef`
+
+---
+
+Ako odemo na sajt `etherscan.io` i unesemo pronađenu adresu, možemo da vidimo sve transakcije koje je izvršio korisnik.
+
+![january transaction](images/image44.png)
+
+**What mining pool did the attacker receive payments from on January 23, 2021 UTC?**: `Ethermine`
+
+---
+
+Na kraju, kako bismo otkrili kojim je još kriptovalutama korisnik trgovao, možemo da se prebacimo na tab `Token Transfers (ERC-20)`, možemo da uočimo da je korisnik trgovao i sa kriptovalutom  `Tether`.
+
+![tether](images/image45.png)
+
+**What other cryptocurrency did the attacker exchange with using their cryptocurrency wallet?**: `Tether`
 
 
 ## Task 5 - Taunt
