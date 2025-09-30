@@ -68,7 +68,7 @@ public class KeyService {
         material.setKey(wrapped);
 
         var key = keyRepository.save(WrappedKeyEntity.of(material, metadata));
-        metadata.updatePrimaryVersion(key.getVersion()); // Set the latest version as primary
+        metadata.updatePrimaryVersion(version); // Set the latest version as primary
         return metadataRepository.save(metadata);
     }
 

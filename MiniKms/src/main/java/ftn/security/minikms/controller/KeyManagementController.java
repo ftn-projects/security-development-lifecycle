@@ -3,6 +3,7 @@ package ftn.security.minikms.controller;
 import ftn.security.minikms.dto.KeyDTO;
 import ftn.security.minikms.dto.KeyMapper;
 import ftn.security.minikms.service.KeyService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,9 @@ public class KeyManagementController {
     private final KeyMapper mapper;
 
     @Autowired
-    public KeyManagementController(KeyService keyService, KeyMapper mapper) {
+    public KeyManagementController(KeyService keyService) {
         this.keyService = keyService;
-        this.mapper = mapper;
+        this.mapper = Mappers.getMapper(KeyMapper.class);
     }
 
     @PostMapping("/create")
@@ -44,8 +45,8 @@ public class KeyManagementController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> deleteKey(@PathVariable UUID id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteKey(@PathVariable UUID id) {
         try {
             keyService.deleteKey(id);
             return ResponseEntity.noContent().build();
@@ -53,5 +54,4 @@ public class KeyManagementController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 }
