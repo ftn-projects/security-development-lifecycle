@@ -1,13 +1,12 @@
 package ftn.security.minikms.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ftn.security.minikms.logging.EntityLogger;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
+@EntityListeners(EntityLogger.class)
 public class TestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
