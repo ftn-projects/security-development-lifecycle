@@ -2,21 +2,20 @@ package ftn.security.minikms.dto;
 
 import ftn.security.minikms.enumeration.KeyOperation;
 import ftn.security.minikms.enumeration.KeyType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class KeyDTO {
+public class KeyMetadataDTO {
     private UUID id;
     private String alias;
+    private Integer primaryVersion;
     private KeyType keyType;
     private List<KeyOperation> allowedOperations;
+    private Instant createdAt;
+    private Instant rotatedAt;
 }
