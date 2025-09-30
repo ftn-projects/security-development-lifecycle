@@ -3,10 +3,12 @@ package ftn.security.minikms.controller;
 import ftn.security.minikms.dto.TestDTO;
 import ftn.security.minikms.entity.TestEntity;
 import ftn.security.minikms.service.TestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/test")
 public class TestController {
