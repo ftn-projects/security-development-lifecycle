@@ -1,36 +1,38 @@
 package ftn.security.minikms.logging;
 
 import jakarta.persistence.*;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class EntityLogger {
 
     @PrePersist
     public void prePersist(Object entity) {
-        System.out.println("Creating: " + entity);
+        log.info("Creating: {}", entity);
     }
 
     @PostPersist
     public void postPersist(Object entity) {
-        System.out.println("Created: " + entity);
+        log.info("Created: {}", entity);
     }
 
     @PreUpdate
     public void preUpdate(Object entity) {
-        System.out.println("Updating: " + entity);
+        log.info("Updating: {}", entity);
     }
 
     @PostUpdate
     public void postUpdate(Object entity) {
-        System.out.println("Updated: " + entity);
+        log.info("Updated: {}", entity);
     }
 
     @PreRemove
     public void preRemove(Object entity) {
-        System.out.println("Deleting: " + entity);
+        log.info("Deleting: {}", entity);
     }
 
     @PostRemove
     public void postRemove(Object entity) {
-        System.out.println("Deleted: " + entity);
+        log.info("Deleted: {}", entity);
     }
 }
