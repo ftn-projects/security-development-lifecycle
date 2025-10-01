@@ -1,35 +1,36 @@
+<div class="app-wrapper">
+
 <mat-toolbar color="primary">
   <span>Mini KMS Client</span>
-  
+
   <span class="spacer"></span>
-  
+
   <nav *ngIf="isAuthenticated()">
     <!-- Manager can see both buttons -->
-    <a mat-button 
-       routerLink="/manage-keys" 
-       routerLinkActive="active-link"
-       *ngIf="isManager()">
-       Manage Keys
+    <a mat-button routerLink="/manage-keys" routerLinkActive="active-link" *ngIf="isManager()">
+      Manage Keys
     </a>
-    
+
     <!-- Both manager and user can see crypto -->
-    <a mat-button 
-       routerLink="/crypto" 
-       routerLinkActive="active-link">
-       Crypto
+    <a mat-button routerLink="/crypto" routerLinkActive="active-link">
+      Crypto
     </a>
-    
+
     <!-- Logout button for authenticated users -->
     <button mat-button (click)="logout()">
       <mat-icon>logout</mat-icon>
       Logout
     </button>
   </nav>
-  
+
   <!-- Login button for non-authenticated users -->
   <nav *ngIf="!isAuthenticated()">
     <a mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
   </nav>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+</div>

@@ -41,9 +41,14 @@ public class KeyManagementService {
         );
     }
 
-    public KeyMetadata createKey(String alias, KeyType keyType, List<KeyOperation> allowedOperations, String username)
+    public KeyMetadata createKey(String alias, KeyType keyType, String username)
             throws InvalidParameterException, GeneralSecurityException {
         var user = findUserByUsername(username);
+        var allowedOperations = switch (keyType) {
+            case SYMMETRIC -> List.of(KeyOperation.ENCRYPT);
+            case ASYMMETRIC -> List.of(KeyOperation.ENCRYPT, KeyOperation.SIGN);
+            case HMAC -> List.of(KeyOperation.SIGN);
+        };
         var metadata = metadataRepository.save(KeyMetadata.of(alias, keyType, allowedOperations, user));
         return createNewKeyVersion(metadata, 1);
     }
