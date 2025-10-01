@@ -2,7 +2,7 @@ package ftn.security.minikms.controller;
 
 import ftn.security.minikms.dto.KeyDTO;
 import ftn.security.minikms.dto.KeyMapper;
-import ftn.security.minikms.service.KeyService;
+import ftn.security.minikms.service.KeyManagementService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +17,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/api/v1/keys")
 public class KeyManagementController {
-    private final KeyService keyService;
+    private final KeyManagementService keyService;
     private final KeyMapper mapper;
 
     @Autowired
-    public KeyManagementController(KeyService keyService) {
+    public KeyManagementController(KeyManagementService keyService) {
         this.keyService = keyService;
         this.mapper = Mappers.getMapper(KeyMapper.class);
     }

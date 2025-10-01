@@ -13,7 +13,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-class RSAService implements ICryptoService {
+public class RSAService implements ICryptoService {
     public KeyMaterial generateKey() throws NoSuchAlgorithmException {
         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
         generator.initialize(3072);

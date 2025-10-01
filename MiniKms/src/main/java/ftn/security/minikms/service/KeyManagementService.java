@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class KeyService {
+public class KeyManagementService {
     private final KeyMetadataRepository metadataRepository;
     private final WrappedKeyRepository keyRepository;
     private final UserRepository userRepository;
@@ -25,7 +25,7 @@ public class KeyService {
     private final Map<KeyType, ICryptoService> cryptoServices;
     private static final String NOT_AUTHORIZED_MSG = "You do not own a key with given id";
 
-    public KeyService(
+    public KeyManagementService(
             KeyMetadataRepository metadataRepository,
             WrappedKeyRepository keyRepository,
             UserRepository userRepository,

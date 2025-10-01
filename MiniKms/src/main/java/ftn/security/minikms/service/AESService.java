@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-class AESService implements ICryptoService {
+public class AESService implements ICryptoService {
     public KeyMaterial generateKey() throws NoSuchAlgorithmException {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(256, SecureRandom.getInstanceStrong());
