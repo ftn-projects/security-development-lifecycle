@@ -75,6 +75,17 @@ public class KeyComputeService {
         var wrappedKey = keyRepository.findByMetadataIdAndVersion(keyId, version)
                 .orElseThrow(() -> new InvalidParameterException("Key with given id and version does not exist"));
 
+        return wrappedKey.getWrappedMaterial();
+    }
+
+    public KeyMaterial getKeySig(UUID keyId, Integer version) {
+        var metadata = metadataRepository.findById(keyId)
+                .orElseThrow(() -> new InvalidParameterException("Key with given id does not exist"));
+
+        if (version == null) version = metadata.getPrimaryVersion();
+        var wrappedKey = keyRepository.findByMetadataIdAndVersion(keyId, version)
+                .orElseThrow(() -> new InvalidParameterException("Key with given id and version does not exist"));
+
         var wrappedMaterial = wrappedKey.getWrappedMaterial();
 
         try {

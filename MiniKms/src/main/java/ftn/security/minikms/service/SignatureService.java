@@ -7,11 +7,10 @@ import ftn.security.minikms.enumeration.KeyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.GeneralSecurityException;
-import java.security.KeyFactory;
-import java.security.PrivateKey;
-import java.security.Signature;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -24,16 +23,14 @@ public class SignatureService {
     public SignatureService() {
     }
 
-    public byte[] sign(UUID keyId, String message) throws GeneralSecurityException {
-        KeyMaterial keyMaterial = keyComputeService.getKey(keyId, null);
+    public byte[] sign(UUID keyId, String message, Integer version) throws GeneralSecurityException {
+        KeyMaterial keyMaterial = keyComputeService.getKeySig(keyId, version);
 
         // Ensure it's asymmetric
         if (keyMaterial.getPublicKey() == null) {
             throw new IllegalArgumentException("Key is not asymmetric and cannot be used for signing");
         }
 
-        System.out.println("Private key bytes length = " + keyMaterial.getKey().length);
-        System.out.println("Public key bytes length = " + keyMaterial.getPublicKey().length);
 
         // Reconstruct private key from PKCS#8
         PrivateKey privateKey = KeyFactory.getInstance("RSA")
@@ -45,5 +42,23 @@ public class SignatureService {
         signature.update(message.getBytes(java.nio.charset.StandardCharsets.UTF_8));
 
         return signature.sign();
+    }
+
+    public boolean verify(UUID keyId, String message, byte[] signatureBytes, Integer version) throws GeneralSecurityException {
+        KeyMaterial keyMaterial = keyComputeService.getKeySig(keyId, version);
+
+        if (keyMaterial.getPublicKey() == null) {
+            throw new IllegalArgumentException("Key is not asymmetric and cannot be used for verification");
+        }
+
+        // Reconstruct public key
+        PublicKey publicKey = KeyFactory.getInstance("RSA")
+                .generatePublic(new X509EncodedKeySpec(keyMaterial.getPublicKey()));
+
+        Signature signature = Signature.getInstance("SHA256withRSA");
+        signature.initVerify(publicKey);
+        signature.update(message.getBytes(StandardCharsets.UTF_8));
+
+        return signature.verify(signatureBytes);
     }
 }
