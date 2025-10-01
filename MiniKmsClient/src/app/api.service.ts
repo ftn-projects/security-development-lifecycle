@@ -22,6 +22,25 @@ export interface KeyMetadata {
   rotatedAt?: Date;
 }
 
+export interface CryptoDTO {
+  message: string;
+  keyId: string;
+  version: number;
+  hmacBase64: string | null;
+}
+
+export interface SignRequestDTO{
+  message: string;
+  version: number;
+}
+
+export interface VerifyRequestDTO{
+  message: string;
+  signature: string;
+}
+
+export type EncryptType = "SYMMETRIC" | "ASYMMETRIC";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,5 +67,56 @@ export class ApiService {
 
   deleteKey(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/keys/${id}`);
+  }
+
+  encrypt(cryptoDTO: CryptoDTO, encryptType: EncryptType): Observable<String>{
+    return(
+    encryptType == 'SYMMETRIC' ?
+      this.http.post<String>(`${this.baseUrl}/crypto/encrypt/symmetric`, cryptoDTO)
+      :
+      this.http.post<String>(`${this.baseUrl}/crypto/encrypt/asymmetric`, cryptoDTO)
+    )
+  }
+
+  decrypt(cryptoDTO: CryptoDTO, encryptType: EncryptType): Observable<String>{
+    return(
+    encryptType == 'SYMMETRIC' ?
+      this.http.post<String>(`${this.baseUrl}/crypto/decrypt/symmetric`, cryptoDTO)
+      :
+      this.http.post<String>(`${this.baseUrl}/crypto/decrypt/asymmetric`, cryptoDTO)
+    )
+  }
+
+  computeHmac(cryptoDTO: CryptoDTO) : Observable<String>{
+    return this.http.post<String>(`${this.baseUrl}/crypto/compute/hmac`, cryptoDTO)
+  }
+
+  verifyHmac(cryptoDTO: CryptoDTO) : Observable<String>{
+    return this.http.post<String>(`${this.baseUrl}/crypto/verify/hmac`, cryptoDTO)
+  }
+
+  sign(keyId: number, signRequestDTO: SignRequestDTO): Observable<string> {
+  return this.http.post<string>(
+    `${this.baseUrl}/signature/sign`,
+    signRequestDTO,
+    { params: { keyId: keyId.toString() } }
+  );
+}
+
+  verify(
+    keyId: number,
+    verifyRequestDTO: VerifyRequestDTO,
+    version: number | null
+  ): Observable<string> {
+    let params: any = { keyId: keyId.toString() };
+    if (version !== null) {
+      params.version = version.toString();
+    }
+
+    return this.http.post<string>(
+      `${this.baseUrl}/signature/verify`,
+      verifyRequestDTO,
+      { params }
+    );
   }
 }
