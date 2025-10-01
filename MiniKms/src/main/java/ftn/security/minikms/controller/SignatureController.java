@@ -1,5 +1,6 @@
 package ftn.security.minikms.controller;
 
+import ftn.security.minikms.dto.SignRequestDTO;
 import ftn.security.minikms.service.SignatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,9 @@ public class SignatureController {
     @PostMapping("/sign")
     @Transactional(readOnly = true)
     public ResponseEntity<String> sign(@RequestParam UUID keyId,
-                                       @RequestBody byte[] data,
-                                       Principal principal) {
+                                       @RequestBody SignRequestDTO request) {
         try {
-            byte[] signature = signatureService.sign(keyId, data, principal.getName());
+            byte[] signature = signatureService.sign(keyId, request.getMessage());
             return ResponseEntity.ok(Base64.getEncoder().encodeToString(signature));
         } catch (GeneralSecurityException | IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

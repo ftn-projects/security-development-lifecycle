@@ -206,3 +206,106 @@
     "keyId": "d77e27b7-f211-4ed5-bd76-fd016130fa6b"
 }
 2025-10-01 18:56:03 [https-jsse-nio-8443-exec-4] INFO  f.s.m.l.RequestResponseLoggingFilter - [ffe3e0a2-e1a2-4bd9-95cd-37b2b6be80e0] RESPONSE POST /api/v1/crypto/encrypt/asymmetric | Status=201 | Duration=25ms | Body=VLsdLnsd9DpRkaFLBCqgp4WHHU3y1/AhPAT7nPXeCZn+9NsbSXIUIhCU3j1fqtip/WINJW0lwoYX59xNYoFY0RUsWw1wffLoCEmb6CDtReRRCrPUNQZQm8dAHx4a8zlrO/94SMEHSEP+tsYhnPZnyqxXIKA91f40ZuS7kyqWEutxZhWB4rFtvNuBA8CUBsMPfmAjSRlvAmPHoHGfu62ALrv4nOb38W91nAOF1ufpx8yTF8KMwf2DqyxW1ILu23/uKXt3xLYg9VV29lN10WSV3PN8f/UrdDaKFF02bGoB6IhRIGCv1YL3mLx3tNYnhRFXHpeHzlkRWf+nVZE53XOYXC0kag0KjIX33VdxeLKX1i393VRLh11FqZosl3IZJ5hW0T+3qXk2mXBXetRHcM+2poyklIH4Nw+vVNCQaNoLqXWc6c59GZ55av5grl90Zw2J+VuzlUEVlOYyRDiivAk/GAi2iDcsJ8Bm0ImtuOxA2ckll9/qsLNEklVEurswDoYd
+2025-10-01 19:08:38 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [551dc86b-d2d0-414b-bfcb-6772254e0f86] REQUEST POST /api/v1/auth | Body={
+    "username": "manager",
+    "password": "manager"
+}
+2025-10-01 19:08:38 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [551dc86b-d2d0-414b-bfcb-6772254e0f86] RESPONSE POST /api/v1/auth | Status=200 | Duration=787ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwidXNlcklkIjoxLCJyb2xlIjoiTUFOQUdFUiIsImlhdCI6MTc1OTMzODUxOCwiZXhwIjoxNzU5MzQyMTE4fQ.xbfFldOxdGhsrUaqvgovZdEcQGLQ9pcbYRT2f7sOA2w"}
+2025-10-01 19:08:50 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [29fb9de1-d73d-487e-94b7-7bedf9d1b29c] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "test-signing-key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 19:08:50 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [29fb9de1-d73d-487e-94b7-7bedf9d1b29c] RESPONSE POST /api/v1/keys/create | Status=201 | Duration=6535ms | Body={"id":"59a16e7e-d236-448b-8a8a-3923f45f6f75","alias":"test-signing-key","primaryVersion":1,"keyType":"ASYMMETRIC","allowedOperations":["SIGN"],"createdAt":"2025-10-01T17:08:43.534323600Z","rotatedAt":null}
+2025-10-01 19:09:02 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [3c311b5c-e864-415c-ad03-40b273ef71e5] REQUEST POST /api/v1/signatures/sign | Body="Hello world"
+2025-10-01 19:09:02 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [3c311b5c-e864-415c-ad03-40b273ef71e5] RESPONSE POST /api/v1/signatures/sign | Status=415 | Duration=27ms | Body=
+2025-10-01 19:09:25 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [b0178c18-afa9-4614-b629-ecde185953fc] REQUEST POST /api/v1/signatures/sign | Body=Hello world
+2025-10-01 19:09:25 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [b0178c18-afa9-4614-b629-ecde185953fc] RESPONSE POST /api/v1/signatures/sign | Status=415 | Duration=4ms | Body=
+2025-10-01 19:10:13 [https-jsse-nio-8443-exec-10] INFO  f.s.m.l.RequestResponseLoggingFilter - [bc500d39-a3f1-4f4b-aaf1-11bbeb75e5ac] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world"
+}
+2025-10-01 19:10:13 [https-jsse-nio-8443-exec-10] INFO  f.s.m.l.RequestResponseLoggingFilter - [bc500d39-a3f1-4f4b-aaf1-11bbeb75e5ac] RESPONSE POST /api/v1/signatures/sign | Status=400 | Duration=0ms | Body=
+2025-10-01 19:14:24 [https-jsse-nio-8443-exec-2] INFO  f.s.m.l.RequestResponseLoggingFilter - [33bdc7a0-ad98-49c1-b49d-a8f83206ba9c] REQUEST POST /api/v1/auth | Body={
+    "username": "manager",
+    "password": "manager"
+}
+2025-10-01 19:14:24 [https-jsse-nio-8443-exec-2] INFO  f.s.m.l.RequestResponseLoggingFilter - [33bdc7a0-ad98-49c1-b49d-a8f83206ba9c] RESPONSE POST /api/v1/auth | Status=200 | Duration=932ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwidXNlcklkIjoxLCJyb2xlIjoiTUFOQUdFUiIsImlhdCI6MTc1OTMzODg2NCwiZXhwIjoxNzU5MzQyNDY0fQ.svY6Qx9e-hlZR-_wjhvZRrd0OGz8Tdydi4SbHt4ntls"}
+2025-10-01 19:14:41 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [624339d4-09ad-4a13-a561-ca0b358905ab] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "test-signing-key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 19:14:41 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [624339d4-09ad-4a13-a561-ca0b358905ab] RESPONSE POST /api/v1/keys/create | Status=201 | Duration=12154ms | Body={"id":"2075c1de-0ecf-472c-835e-7079ea7afb6a","alias":"test-signing-key","primaryVersion":1,"keyType":"ASYMMETRIC","allowedOperations":["SIGN"],"createdAt":"2025-10-01T17:14:29.279237500Z","rotatedAt":null}
+2025-10-01 19:14:51 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [293978f0-1ec3-4cb0-89f7-6f702940c56e] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world"
+}
+2025-10-01 19:14:51 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [293978f0-1ec3-4cb0-89f7-6f702940c56e] RESPONSE POST /api/v1/signatures/sign | Status=400 | Duration=99ms | Body=java.security.InvalidKeyException: Unable to decode key
+2025-10-01 19:25:17 [https-jsse-nio-8443-exec-3] INFO  f.s.m.l.RequestResponseLoggingFilter - [2f0eefde-b7ac-41ec-8d46-d1d9ebb4a720] REQUEST POST /api/v1/auth | Body={
+    "username": "manager",
+    "password": "manager"
+}
+2025-10-01 19:25:17 [https-jsse-nio-8443-exec-3] INFO  f.s.m.l.RequestResponseLoggingFilter - [2f0eefde-b7ac-41ec-8d46-d1d9ebb4a720] RESPONSE POST /api/v1/auth | Status=200 | Duration=810ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwidXNlcklkIjoxLCJyb2xlIjoiTUFOQUdFUiIsImlhdCI6MTc1OTMzOTUxNywiZXhwIjoxNzU5MzQzMTE3fQ.Yi-cnepoit57CQrrG-MUVnsQgdJUVDdqrwjhmuwCdmo"}
+2025-10-01 19:25:26 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [7f283ec9-bc77-46c2-a588-b29ab06a48e9] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "test-signing-key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 19:25:26 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [7f283ec9-bc77-46c2-a588-b29ab06a48e9] RESPONSE POST /api/v1/keys/create | Status=201 | Duration=5742ms | Body={"id":"afcbeaf5-fa7c-4bb0-8e3a-6614d4299abc","alias":"test-signing-key","primaryVersion":1,"keyType":"ASYMMETRIC","allowedOperations":["SIGN"],"createdAt":"2025-10-01T17:25:21.266403500Z","rotatedAt":null}
+2025-10-01 19:25:30 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [51d1a16d-dff6-4fc4-a59b-8f5b5cd1dfb0] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world"
+}
+2025-10-01 19:25:30 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [51d1a16d-dff6-4fc4-a59b-8f5b5cd1dfb0] RESPONSE POST /api/v1/signatures/sign | Status=400 | Duration=65ms | Body=java.security.InvalidKeyException: Unable to decode key
+2025-10-01 19:33:12 [https-jsse-nio-8443-exec-3] INFO  f.s.m.l.RequestResponseLoggingFilter - [cfac596d-04b1-46cf-89cc-45ecf3af6a36] REQUEST POST /api/v1/auth | Body={
+    "username": "manager",
+    "password": "manager"
+}
+2025-10-01 19:33:12 [https-jsse-nio-8443-exec-3] INFO  f.s.m.l.RequestResponseLoggingFilter - [cfac596d-04b1-46cf-89cc-45ecf3af6a36] RESPONSE POST /api/v1/auth | Status=200 | Duration=835ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwidXNlcklkIjoxLCJyb2xlIjoiTUFOQUdFUiIsImlhdCI6MTc1OTMzOTk5MSwiZXhwIjoxNzU5MzQzNTkxfQ.28EeDp_kr97xaEI6PFsWUhm9QmA54vAykU4bWhC_mWE"}
+2025-10-01 19:33:22 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [d92ff478-b285-4e56-bdeb-a94dfcd0931a] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "test-signing-key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 19:33:22 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [d92ff478-b285-4e56-bdeb-a94dfcd0931a] RESPONSE POST /api/v1/keys/create | Status=201 | Duration=7901ms | Body={"id":"05e57d2a-509b-4e29-b078-8f0b33f1eb66","alias":"test-signing-key","primaryVersion":1,"keyType":"ASYMMETRIC","allowedOperations":["SIGN"],"createdAt":"2025-10-01T17:33:14.976279900Z","rotatedAt":null}
+2025-10-01 19:33:28 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [05378a8b-2a6f-436b-88a7-547d872b5c36] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world"
+}
+2025-10-01 19:33:28 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [05378a8b-2a6f-436b-88a7-547d872b5c36] RESPONSE POST /api/v1/signatures/sign | Status=400 | Duration=86ms | Body=java.security.InvalidKeyException: Unable to decode key
+2025-10-01 19:34:13 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [e3de5670-e62a-46ee-8fe6-080b06c00e93] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world",
+    "version": 1
+}
+2025-10-01 19:34:13 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [e3de5670-e62a-46ee-8fe6-080b06c00e93] RESPONSE POST /api/v1/signatures/sign | Status=200 | Duration=28ms | Body=
+2025-10-01 19:35:51 [https-jsse-nio-8443-exec-5] INFO  f.s.m.l.RequestResponseLoggingFilter - [670f695f-3fd6-4ef3-8f7d-f8e23adb1f8b] REQUEST POST /api/v1/auth | Body={
+    "username": "manager",
+    "password": "manager"
+}
+2025-10-01 19:35:51 [https-jsse-nio-8443-exec-5] INFO  f.s.m.l.RequestResponseLoggingFilter - [670f695f-3fd6-4ef3-8f7d-f8e23adb1f8b] RESPONSE POST /api/v1/auth | Status=200 | Duration=831ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwidXNlcklkIjoxLCJyb2xlIjoiTUFOQUdFUiIsImlhdCI6MTc1OTM0MDE1MSwiZXhwIjoxNzU5MzQzNzUxfQ.NXm7-XzNPvbrx85ZPlSsfvdSrfnAO9_HN_Km2K7KPfc"}
+2025-10-01 19:35:58 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [899a026c-83f5-450a-9b86-a005f2cc32a7] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "test-signing-key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 19:35:58 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [899a026c-83f5-450a-9b86-a005f2cc32a7] RESPONSE POST /api/v1/keys/create | Status=201 | Duration=4493ms | Body={"id":"81a512cc-d470-4d6e-a106-c87958d3d211","alias":"test-signing-key","primaryVersion":1,"keyType":"ASYMMETRIC","allowedOperations":["SIGN"],"createdAt":"2025-10-01T17:35:54.428321600Z","rotatedAt":null}
+2025-10-01 19:36:02 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [598a899b-460f-480b-8a76-71743c932c55] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world",
+}
+2025-10-01 19:36:02 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [598a899b-460f-480b-8a76-71743c932c55] RESPONSE POST /api/v1/signatures/sign | Status=400 | Duration=13ms | Body=
+2025-10-01 19:36:17 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [bdb15939-6e6c-4742-839b-e9cc0645bf57] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world"
+}
+2025-10-01 19:36:17 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [bdb15939-6e6c-4742-839b-e9cc0645bf57] RESPONSE POST /api/v1/signatures/sign | Status=400 | Duration=59ms | Body=java.security.InvalidKeyException: Unable to decode key
+2025-10-01 19:40:43 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [10c32398-e8d3-4520-abe8-8713557334db] REQUEST POST /api/v1/auth | Body={
+    "username": "manager",
+    "password": "manager"
+}
+2025-10-01 19:40:43 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [10c32398-e8d3-4520-abe8-8713557334db] RESPONSE POST /api/v1/auth | Status=200 | Duration=997ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwidXNlcklkIjoxLCJyb2xlIjoiTUFOQUdFUiIsImlhdCI6MTc1OTM0MDQ0MywiZXhwIjoxNzU5MzQ0MDQzfQ.AtA0plTx8QbMtt7hQWiMhOWUBVAGKn6wZPA-ucYOxDw"}
+2025-10-01 19:40:53 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [f86c731a-ba1c-45f4-bf6c-842151ba5f96] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "test-signing-key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 19:40:53 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [f86c731a-ba1c-45f4-bf6c-842151ba5f96] RESPONSE POST /api/v1/keys/create | Status=201 | Duration=6834ms | Body={"id":"b8734ccd-6f5c-4a8e-8f7c-4fe3e0b8301e","alias":"test-signing-key","primaryVersion":1,"keyType":"ASYMMETRIC","allowedOperations":["SIGN"],"createdAt":"2025-10-01T17:40:46.545949600Z","rotatedAt":null}
+2025-10-01 19:40:59 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [222e100d-a053-4cc0-9b10-df11cfd230b6] REQUEST POST /api/v1/signatures/sign | Body={
+    "message":"Hello world"
+}
+2025-10-01 19:40:59 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [222e100d-a053-4cc0-9b10-df11cfd230b6] RESPONSE POST /api/v1/signatures/sign | Status=200 | Duration=140ms | Body=eoQ2+x8vFhwTieMAZTe0kH1oeTIIXY8V2B6QnFKoehNT0OzmG17HGSccjbckgbSblAldSBxC5iA+m8pSnoTwHKm/z6OJOtQO5kJ0eKtssEux/zuOg9Nyc+Sd/tiH9lopaIlW7wTyA62kGbnju2NuYMEt/PcHmjj1TryCzqlCMTqY98wRupn/1bzAWfWX9nzf5uwrk5MkWQSuA5y1KtjozjPppkxCn2DT8hiFWBhuOOWupWYm7473Ky/zGg87efk9yOZtK6HQBq8ocCiPagjCStH+pvwMyrOxLmnBnrumkkfxU+gtCrjvi36GuCRssquslg9os8BSoJnQZ+eZ2+olLL38r80jM5v1jgsrLiq+z95sM8T+WW3pCT0yd/gB2Z+6XMbIzPIJrUOd18x+FXvUDOq2J6T8SetZwuS1lH6Qces6hORtKjP/7/IRMQciexgixkoAGpGMH8gfVk6jdsHHH9lAedCc/qjI6MARQx5NMIl6K3MCCCK06YVJcXKot5TY

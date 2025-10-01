@@ -1,8 +1,10 @@
 package ftn.security.minikms.service;
 
+import ftn.security.minikms.entity.KeyMaterial;
 import ftn.security.minikms.entity.KeyMetadata;
 import ftn.security.minikms.entity.WrappedKey;
 import ftn.security.minikms.enumeration.KeyType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.GeneralSecurityException;
@@ -10,47 +12,38 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Service
 public class SignatureService {
 
-    private final KeyManagementService keyManagementService;
-    private final RootKeyManager rootKeyManager;
+    @Autowired
+    private KeyComputeService keyComputeService;
 
-    public SignatureService(KeyManagementService keyManagementService, RootKeyManager rootKeyManager) {
-        this.keyManagementService = keyManagementService;
-        this.rootKeyManager = rootKeyManager;
+    public SignatureService() {
     }
 
-    public byte[] sign(UUID keyId, byte[] data, String username) throws GeneralSecurityException {
-        // Get the metadata for the key and check ownership
-        KeyMetadata metadata = keyManagementService.findByIdAndUsername(keyId, username);
-        System.out.println("Metadata: " + metadata);
+    public byte[] sign(UUID keyId, String message) throws GeneralSecurityException {
+        KeyMaterial keyMaterial = keyComputeService.getKey(keyId, null);
 
-        if (metadata.getKeyType() != KeyType.ASYMMETRIC) {
-            throw new IllegalArgumentException("Only ASYMMETRIC keys can be used for signing");
+        // Ensure it's asymmetric
+        if (keyMaterial.getPublicKey() == null) {
+            throw new IllegalArgumentException("Key is not asymmetric and cannot be used for signing");
         }
 
-        // Get the latest version
-        WrappedKey wrappedKey = metadata.getVersion(metadata.getPrimaryVersion());
-        if (wrappedKey == null) throw new GeneralSecurityException("No key version found");
+        System.out.println("Private key bytes length = " + keyMaterial.getKey().length);
+        System.out.println("Public key bytes length = " + keyMaterial.getPublicKey().length);
 
-        // Unwrap the private key
-        byte[] unwrappedKey = rootKeyManager.unwrap(
-                wrappedKey.getWrappedMaterial().getKey(),
-                metadata.getId(),
-                wrappedKey.getVersion()
-        );
-
+        // Reconstruct private key from PKCS#8
         PrivateKey privateKey = KeyFactory.getInstance("RSA")
-                .generatePrivate(new PKCS8EncodedKeySpec(unwrappedKey));
+                .generatePrivate(new PKCS8EncodedKeySpec(keyMaterial.getKey()));
 
-        Signature sig = Signature.getInstance("SHA256withRSA");
-        sig.initSign(privateKey);
-        sig.update(data);
+        // Sign message
+        Signature signature = Signature.getInstance("SHA256withRSA");
+        signature.initSign(privateKey);
+        signature.update(message.getBytes(java.nio.charset.StandardCharsets.UTF_8));
 
-        return sig.sign();
+        return signature.sign();
     }
 }
-
