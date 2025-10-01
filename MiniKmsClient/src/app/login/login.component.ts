@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/crypto']);
           }
           
-          this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
           this.setLoadingState(false);
         },
         error: (error) => {
