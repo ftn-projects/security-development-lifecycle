@@ -1,1 +1,56 @@
-<p>manage-keys works!</p>
+<div class="controls-row">
+  <mat-form-field appearance="outline" class="control">
+    <mat-label>Alias</mat-label>
+    <input matInput placeholder="Enter alias">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="control">
+    <mat-label>Key Type</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let type of keyTypes" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="add-btn" (click)="addKey()">
+    Add Key
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z2 full-width-table">
+
+  <!-- Key ID -->
+  <ng-container matColumnDef="keyId">
+    <th mat-header-cell *matHeaderCellDef> Key ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.keyId}} </td>
+  </ng-container>
+
+  <!-- Alias -->
+  <ng-container matColumnDef="alias">
+    <th mat-header-cell *matHeaderCellDef> Alias </th>
+    <td mat-cell *matCellDef="let element"> {{element.alias}} </td>
+  </ng-container>
+
+  <!-- Key Type -->
+  <ng-container matColumnDef="keyType">
+    <th mat-header-cell *matHeaderCellDef> Key Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.keyType}} </td>
+  </ng-container>
+
+  <!-- Actions -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element" class="actions-cell">
+      <button mat-stroked-button color="warn" (click)="deleteKey(element)">
+        Delete
+      </button>
+      <button mat-stroked-button color="accent" (click)="rotateKey(element)">
+        Rotate
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
