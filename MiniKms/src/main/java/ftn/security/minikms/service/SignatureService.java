@@ -26,17 +26,14 @@ public class SignatureService {
     public byte[] sign(UUID keyId, String message, Integer version) throws GeneralSecurityException {
         KeyMaterial keyMaterial = keyComputeService.getKeySig(keyId, version);
 
-        // Ensure it's asymmetric
         if (keyMaterial.getPublicKey() == null) {
             throw new IllegalArgumentException("Key is not asymmetric and cannot be used for signing");
         }
 
 
-        // Reconstruct private key from PKCS#8
         PrivateKey privateKey = KeyFactory.getInstance("RSA")
                 .generatePrivate(new PKCS8EncodedKeySpec(keyMaterial.getKey()));
 
-        // Sign message
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initSign(privateKey);
         signature.update(message.getBytes(java.nio.charset.StandardCharsets.UTF_8));
@@ -51,7 +48,6 @@ public class SignatureService {
             throw new IllegalArgumentException("Key is not asymmetric and cannot be used for verification");
         }
 
-        // Reconstruct public key
         PublicKey publicKey = KeyFactory.getInstance("RSA")
                 .generatePublic(new X509EncodedKeySpec(keyMaterial.getPublicKey()));
 
