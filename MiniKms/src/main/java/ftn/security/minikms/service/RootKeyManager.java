@@ -9,6 +9,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.GeneralSecurityException;
 import java.util.Base64;
+import java.util.UUID;
 
 @Service
 public class RootKeyManager {
@@ -24,13 +25,14 @@ public class RootKeyManager {
         this.rootKey = new SecretKeySpec(raw, "AES");
     }
 
-    public byte[] wrap(byte[] plaintextKey, byte[] aad) throws GeneralSecurityException {
+    public byte[] wrap(byte[] plaintextKey, UUID id, Integer version) throws GeneralSecurityException {
         var iv = new byte[12];
         RNG.nextBytes(iv);
 
+        var aad = getAad(id, version);
         var c = Cipher.getInstance("AES/GCM/NoPadding");
         c.init(Cipher.ENCRYPT_MODE, rootKey, new GCMParameterSpec(128, iv));
-        if (aad != null && aad.length > 0) c.updateAAD(aad);
+        if (aad.length > 0) c.updateAAD(aad);
         var ct = c.doFinal(plaintextKey);
 
         var out = new byte[iv.length + ct.length];
@@ -39,14 +41,23 @@ public class RootKeyManager {
         return out;
     }
 
-    public byte[] unwrap(byte[] blob, byte[] aad) throws GeneralSecurityException {
+    public byte[] unwrap(byte[] blob, UUID id, Integer version) throws GeneralSecurityException {
         if (blob.length < 12 + 16) throw new GeneralSecurityException("Blob too short");
+        var aad = getAad(id, version);
         var iv = java.util.Arrays.copyOfRange(blob, 0, 12);
         var ct = java.util.Arrays.copyOfRange(blob, 12, blob.length);
 
         var c = Cipher.getInstance("AES/GCM/NoPadding");
         c.init(Cipher.DECRYPT_MODE, rootKey, new GCMParameterSpec(128, iv));
-        if (aad != null && aad.length > 0) c.updateAAD(aad);
+        if (aad.length > 0) c.updateAAD(aad);
         return c.doFinal(ct);
+    }
+
+    private static byte[] getAad(UUID id, Integer version) {
+        if (id == null || version == null) {
+            throw new IllegalArgumentException("id and version must not be null");
+        }
+        var aadString = id + ":" + version;
+        return aadString.getBytes(java.nio.charset.StandardCharsets.UTF_8);
     }
 }
