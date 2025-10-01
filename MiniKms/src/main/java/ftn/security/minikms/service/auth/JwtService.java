@@ -1,5 +1,6 @@
 package ftn.security.minikms.service.auth;
 
+import ftn.security.minikms.enumeration.UserRole;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,9 +22,11 @@ public class JwtService {
         this.expirationMillis = expirationMillis;
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username, Long userId, UserRole role) {
         return Jwts.builder()
                 .subject(username)
+                .claim("userId", userId)
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expirationMillis))
                 .signWith(secretKey)
