@@ -53,11 +53,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/api/v1/test/**").permitAll()
-                        .requestMatchers("/api/v1/crypto/**").permitAll()
-                        .requestMatchers("/api/v1/signatures/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/keys/**").authenticated() // Allow all roles to GET
                         .requestMatchers("/api/v1/keys/**").hasRole("MANAGER")
+                        .requestMatchers("/api/v1/crypto/**").hasRole("USER")
+                        .requestMatchers("/api/v1/signatures/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
 
