@@ -1,3 +1,8 @@
+Bag Attributes
+    friendlyName: minikms
+    localKeyID: 54 69 6D 65 20 31 37 35 39 32 37 31 38 31 39 39 32 36 
+subject=C=RS, ST=Vojvodina, L=Novi Sad, O=ftn, OU=rbs, CN=Mini KMS
+issuer=C=RS, ST=Vojvodina, L=Novi Sad, O=ftn, OU=rbs, CN=Mini KMS
 -----BEGIN CERTIFICATE-----
 MIIDZTCCAk2gAwIBAgIELtKdhjANBgkqhkiG9w0BAQsFADBjMQswCQYDVQQGEwJS
 UzESMBAGA1UECBMJVm9qdm9kaW5hMREwDwYDVQQHEwhOb3ZpIFNhZDEMMAoGA1UE
