@@ -11,7 +11,7 @@ import java.util.Base64;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/crypto")
+@RequestMapping("/api/v1/signatures")
 public class CryptoController {
 
     private final CryptoOperationService cryptoService;

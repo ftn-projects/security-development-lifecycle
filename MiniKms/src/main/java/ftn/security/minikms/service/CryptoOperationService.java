@@ -21,11 +21,11 @@ import java.util.UUID;
 @Service
 public class CryptoOperationService {
 
-    private final KeyService keyService;
+    private final KeyManagementService keyService;
     private final RootKeyManager rootKeyManager;
     private final KeyMetadataRepository keyMetadataRepository;
 
-    public CryptoOperationService(KeyService keyService, RootKeyManager rootKeyManager, KeyMetadataRepository keyMetadataRepository) {
+    public CryptoOperationService(KeyManagementService keyService, RootKeyManager rootKeyManager, KeyMetadataRepository keyMetadataRepository) {
         this.keyService = keyService;
         this.rootKeyManager = rootKeyManager;
         this.keyMetadataRepository = keyMetadataRepository;
