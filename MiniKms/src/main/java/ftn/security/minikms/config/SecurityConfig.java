@@ -82,9 +82,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         var config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost"));
+        config.setAllowedOrigins(List.of("https://localhost:4200", "http://localhost"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(false);
 
         var source = new UrlBasedCorsConfigurationSource();

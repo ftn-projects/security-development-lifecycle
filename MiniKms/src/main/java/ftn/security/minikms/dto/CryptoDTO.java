@@ -10,7 +10,6 @@ import java.util.UUID;
 public class CryptoDTO {
     private String message;
     private UUID keyId;
-    private String username;
     private Integer version;
     private String hmacBase64;
 }

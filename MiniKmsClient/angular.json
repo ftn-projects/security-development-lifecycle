@@ -67,6 +67,13 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": true,
+            "sslCert": "ssl/certificate.crt",
+            "sslKey": "ssl/private.key",
+            "host": "localhost",
+            "port": 4200
+          },
           "configurations": {
             "production": {
               "buildTarget": "MiniKmsClient:build:production"

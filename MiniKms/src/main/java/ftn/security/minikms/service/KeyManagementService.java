@@ -23,7 +23,7 @@ public class KeyManagementService {
     private final UserRepository userRepository;
     private final RootKeyManager rootKeyManager;
     private final Map<KeyType, ICryptoService> cryptoServices;
-    private static final String NOT_AUTHORIZED_MSG = "You do not own a key with given id";
+    private static final String KEY_NOT_FOUND = "Key with given id does not exist";
 
     public KeyManagementService(
             KeyMetadataRepository metadataRepository,
@@ -48,16 +48,13 @@ public class KeyManagementService {
         return createNewKeyVersion(metadata, 1);
     }
 
-    public void deleteKey(UUID id, String username) throws InvalidParameterException {
-        if (!metadataRepository.existsByIdAndUserUsername(id, username))
-            throw new InvalidParameterException(NOT_AUTHORIZED_MSG);
-
+    public void deleteKey(UUID id) throws InvalidParameterException {
         metadataRepository.deleteById(id);
     }
 
-    public KeyMetadata rotateKey(UUID id, String username) throws InvalidParameterException, GeneralSecurityException {
-        var metadata = metadataRepository.findByIdAndUserUsername(id, username)
-                .orElseThrow(() -> new InvalidParameterException(NOT_AUTHORIZED_MSG));
+    public KeyMetadata rotateKey(UUID id) throws InvalidParameterException, GeneralSecurityException {
+        var metadata = metadataRepository.findById(id)
+                .orElseThrow(() -> new InvalidParameterException(KEY_NOT_FOUND));
 
         var nextVersion = metadata.getPrimaryVersion() + 1;
         return createNewKeyVersion(metadata, nextVersion);
@@ -66,6 +63,8 @@ public class KeyManagementService {
     private KeyMetadata createNewKeyVersion(KeyMetadata metadata, Integer version) throws GeneralSecurityException {
         var id = metadata.getId();
         var keyType = metadata.getKeyType();
+        metadata.updatePrimaryVersion(version); // Set the latest version as primary
+        var saved = metadataRepository.save(metadata);
 
         var material = cryptoServices.get(keyType).generateKey();
         var secretKey = material.getKey();
@@ -76,9 +75,8 @@ public class KeyManagementService {
 
         material.setKey(wrapped);
 
-        var key = keyRepository.save(WrappedKey.of(material, metadata));
-        metadata.updatePrimaryVersion(version); // Set the latest version as primary
-        return metadataRepository.save(metadata);
+        keyRepository.save(WrappedKey.of(version, material, saved));
+        return saved;
     }
 
     private User findUserByUsername(String username) throws InvalidParameterException {
@@ -86,8 +84,12 @@ public class KeyManagementService {
                 new InvalidParameterException("User with given username does not exist"));
     }
 
-    public KeyMetadata findByIdAndUsername(UUID keyId, String username) throws InvalidParameterException {
-        return metadataRepository.findByIdAndUserUsername(keyId, username)
-                .orElseThrow(() -> new InvalidParameterException("You do not own a key with given id"));
+    public List<KeyMetadata> getAllKeys() {
+        return metadataRepository.findAll();
+    }
+
+    public KeyMetadata getKeyById(UUID id) {
+        return metadataRepository.findById(id).orElseThrow(() ->
+                new InvalidParameterException("Key with given id does not exist"));
     }
 }

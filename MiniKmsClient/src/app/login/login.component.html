@@ -1,0 +1,63 @@
+<body>
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>Mini KMS</h1>
+          <p>Sign in to your account</p>
+        </div>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+          <div class="input-group">
+            <label class="input-label" for="username">Username</label>
+            <div class="input-wrapper">
+              <mat-icon class="input-icon">person</mat-icon>
+              <input 
+                id="username"
+                name="username"
+                class="custom-input"
+                formControlName="username" 
+                autocomplete="username"
+                placeholder="Enter your username">
+            </div>
+            <div class="error-message" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+              {{ getErrorMessage('username') }}
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="input-label" for="password">Password</label>
+            <div class="input-wrapper">
+              <mat-icon class="input-icon">lock</mat-icon>
+              <input 
+                id="password"
+                name="password"
+                class="custom-input"
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password" 
+                autocomplete="current-password"
+                placeholder="Enter your password">
+              <button 
+                type="button"
+                class="visibility-toggle"
+                (click)="hidePassword = !hidePassword"
+                [disabled]="loading">
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+            <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              {{ getErrorMessage('password') }}
+            </div>
+          </div>
+  
+          <button 
+            type="submit" 
+            class="login-button"
+            [disabled]="loginForm.invalid || loading"
+            [class.loading]="loading">
+            <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+            <span>{{ loading ? 'Signing in...' : 'Sign In' }}</span>
+          </button>
+        </form>
+      </div>
+    </div>
+</body>
