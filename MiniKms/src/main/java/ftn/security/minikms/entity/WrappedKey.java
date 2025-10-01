@@ -10,7 +10,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class WrappedKeyEntity {
+@Table(name = "key_versions")
+public class WrappedKey {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +23,12 @@ public class WrappedKeyEntity {
     private KeyMaterial wrappedMaterial;
 
     @ManyToOne
-    @JoinColumn(name = "key_metadata_id")
+    @JoinColumn(name = "key_metadata_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private KeyMetadataEntity metadata;
+    private KeyMetadata metadata;
 
-    public static WrappedKeyEntity of(KeyMaterial wrappedMaterial, KeyMetadataEntity metadata) {
-        var entity = new WrappedKeyEntity();
+    public static WrappedKey of(KeyMaterial wrappedMaterial, KeyMetadata metadata) {
+        var entity = new WrappedKey();
         entity.version = 1;
         entity.wrappedMaterial = wrappedMaterial;
         entity.metadata = metadata;

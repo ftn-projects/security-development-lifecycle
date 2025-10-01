@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.GeneralSecurityException;
 import java.security.InvalidParameterException;
+import java.security.Principal;
 import java.util.UUID;
 
 @RestController
@@ -26,9 +27,11 @@ public class KeyManagementController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createKey(@RequestBody KeyDTO dto) throws GeneralSecurityException {
+    public ResponseEntity<?> createKey(@RequestBody KeyDTO dto, Principal principal) throws GeneralSecurityException {
+        var username = principal.getName();
+
         try {
-            var created = keyService.createKey(dto.getAlias(), dto.getKeyType(), dto.getAllowedOperations());
+            var created = keyService.createKey(dto.getAlias(), dto.getKeyType(), dto.getAllowedOperations(), username);
             return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toDto(created));
         } catch (InvalidParameterException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -36,9 +39,11 @@ public class KeyManagementController {
     }
 
     @PostMapping("/rotate")
-    public ResponseEntity<?> rotateKey(@RequestBody KeyDTO dto) throws GeneralSecurityException {
+    public ResponseEntity<?> rotateKey(@RequestBody KeyDTO dto, Principal principal) throws GeneralSecurityException {
+        var username = principal.getName();
+
         try {
-            var created = keyService.rotateKey(dto.getId());
+            var created = keyService.rotateKey(dto.getId(), username);
             return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toDto(created));
         } catch (InvalidParameterException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -46,9 +51,11 @@ public class KeyManagementController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteKey(@PathVariable UUID id) {
+    public ResponseEntity<?> deleteKey(@PathVariable UUID id, Principal principal) {
+        var username = principal.getName();
+
         try {
-            keyService.deleteKey(id);
+            keyService.deleteKey(id, username);
             return ResponseEntity.noContent().build();
         } catch (InvalidParameterException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
