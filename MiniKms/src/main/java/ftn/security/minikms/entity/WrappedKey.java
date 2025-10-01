@@ -27,9 +27,9 @@ public class WrappedKey {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private KeyMetadata metadata;
 
-    public static WrappedKey of(KeyMaterial wrappedMaterial, KeyMetadata metadata) {
+    public static WrappedKey of(Integer version, KeyMaterial wrappedMaterial, KeyMetadata metadata) {
         var entity = new WrappedKey();
-        entity.version = 1;
+        entity.version = version;
         entity.wrappedMaterial = wrappedMaterial;
         entity.metadata = metadata;
         return entity;
