@@ -85,4 +85,9 @@ public class KeyService {
         return userRepository.findByUsername(username).orElseThrow(() ->
                 new InvalidParameterException("User with given username does not exist"));
     }
+
+    public KeyMetadata findByIdAndUsername(UUID keyId, String username) throws InvalidParameterException {
+        return metadataRepository.findByIdAndUserUsername(keyId, username)
+                .orElseThrow(() -> new InvalidParameterException("You do not own a key with given id"));
+    }
 }
