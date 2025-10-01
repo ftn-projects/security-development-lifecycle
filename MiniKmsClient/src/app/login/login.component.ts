@@ -51,7 +51,12 @@ export class LoginComponent implements OnInit {
         },
         error: (error) => {
           console.error('Login error:', error);
-          this.snackBar.open('Invalid credentials', 'Close', { duration: 3000 });
+          if (error.status === 0) {
+            this.snackBar.open('Server is unreachable', 'Close', { duration: 3000 });
+          } else if (error.status === 401 || error.status === 403) {
+            this.snackBar.open('Invalid credentials', 'Close', { duration: 3000 });
+          }
+
           this.setLoadingState(false);
         }
       });

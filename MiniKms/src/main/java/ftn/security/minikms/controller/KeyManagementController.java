@@ -31,7 +31,7 @@ public class KeyManagementController {
         var username = principal.getName();
 
         try {
-            var created = keyService.createKey(dto.getAlias(), dto.getKeyType(), dto.getAllowedOperations(), username);
+            var created = keyService.createKey(dto.getAlias(), dto.getKeyType(), username);
             return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toDto(created));
         } catch (InvalidParameterException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
