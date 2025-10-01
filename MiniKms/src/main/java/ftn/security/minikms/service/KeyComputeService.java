@@ -3,16 +3,14 @@ package ftn.security.minikms.service;
 import ftn.security.minikms.entity.KeyMaterial;
 import ftn.security.minikms.repository.KeyMetadataRepository;
 import ftn.security.minikms.repository.WrappedKeyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.InvalidParameterException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.util.UUID;
 
@@ -24,6 +22,9 @@ public class KeyComputeService {
     private final AESService aesService;
     private final RSAService rsaService;
     private final HMACService hmacService;
+
+    @Autowired
+    private RootKeyManager rootKeyManager;
 
     public KeyComputeService(KeyMetadataRepository metadataRepository, WrappedKeyRepository keyRepository) {
         this.metadataRepository = metadataRepository;
@@ -76,4 +77,32 @@ public class KeyComputeService {
 
         return wrappedKey.getWrappedMaterial();
     }
+
+    public KeyMaterial getKeySig(UUID keyId, Integer version) {
+        var metadata = metadataRepository.findById(keyId)
+                .orElseThrow(() -> new InvalidParameterException("Key with given id does not exist"));
+
+        if (version == null) version = metadata.getPrimaryVersion();
+        var wrappedKey = keyRepository.findByMetadataIdAndVersion(keyId, version)
+                .orElseThrow(() -> new InvalidParameterException("Key with given id and version does not exist"));
+
+        var wrappedMaterial = wrappedKey.getWrappedMaterial();
+
+        try {
+            // Unwrap the private key
+            byte[] unwrappedPrivate = rootKeyManager.unwrap(
+                    wrappedMaterial.getKey(), keyId, version
+            );
+
+            // For asymmetric keys: also store public key
+            KeyMaterial material = new KeyMaterial();
+            material.setKey(unwrappedPrivate);
+            material.setPublicKey(wrappedMaterial.getPublicKey());
+
+            return material;
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException("Failed to unwrap key material", e);
+        }
+    }
+
 }
