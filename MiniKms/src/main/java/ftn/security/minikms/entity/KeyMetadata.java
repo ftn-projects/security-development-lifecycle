@@ -36,7 +36,7 @@ public class KeyMetadata {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private User createdBy;
 
     private Instant createdAt;
     private Instant rotatedAt;
@@ -50,7 +50,7 @@ public class KeyMetadata {
         entity.primaryVersion = 0;
         entity.keyType = keyType;
         entity.allowedOperations = allowedOperations;
-        entity.user = user;
+        entity.createdBy = user;
         entity.createdAt = Instant.now();
         return entity;
     }
@@ -61,11 +61,5 @@ public class KeyMetadata {
         if (version > 1) {
             rotatedAt = Instant.now();
         }
-    }
-    public WrappedKey getVersion(int version) {
-        return versions.stream()
-                .filter(wk -> wk.getVersion() == version)
-                .findFirst()
-                .orElse(null);
     }
 }
