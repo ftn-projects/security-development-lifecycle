@@ -1,0 +1,22 @@
+2025-09-30 22:02:56 [http-nio-8080-exec-10] INFO  f.s.m.l.RequestResponseLoggingFilter - [f3738aa7-dd26-4730-ae55-a03e82dc5cf9] REQUEST POST /api/v1/test/add | Body={
+    "name":"testname"
+}
+2025-09-30 22:02:56 [http-nio-8080-exec-10] INFO  f.s.m.l.RequestResponseLoggingFilter - [f3738aa7-dd26-4730-ae55-a03e82dc5cf9] RESPONSE POST /api/v1/test/add | Status=200 | Duration=196ms | Body={"id":1,"name":"testname"}
+2025-09-30 22:04:21 [http-nio-8080-exec-5] INFO  f.s.m.l.RequestResponseLoggingFilter - [1ae5c07a-e782-49cd-beee-beb87e96a6a2] REQUEST POST /api/v1/test/add | Body={
+    "name":"testname"
+}
+2025-09-30 22:04:21 [http-nio-8080-exec-5] INFO  f.s.m.l.RequestResponseLoggingFilter - [1ae5c07a-e782-49cd-beee-beb87e96a6a2] RESPONSE POST /api/v1/test/add | Status=200 | Duration=177ms | Body={"id":1,"name":"testname"}
+2025-09-30 22:06:18 [http-nio-8080-exec-2] INFO  f.s.m.l.RequestResponseLoggingFilter - [f90fb9c0-869b-4001-9054-5f3d7788c051] REQUEST POST /api/v1/test/add | Body={
+    "name":"testname"
+}
+2025-09-30 22:06:18 [http-nio-8080-exec-2] INFO  f.s.m.l.RequestResponseLoggingFilter - [f90fb9c0-869b-4001-9054-5f3d7788c051] RESPONSE POST /api/v1/test/add | Status=200 | Duration=191ms | Body={"id":1,"name":"testname"}
+2025-09-30 22:08:15 [http-nio-8080-exec-1] INFO  f.s.m.l.RequestResponseLoggingFilter - [717eb391-cb49-4bce-8232-7f3f6af1da74] REQUEST POST /api/v1/test/add | Body={
+    "name":"testname"
+}
+2025-09-30 22:08:15 [http-nio-8080-exec-1] INFO  f.s.m.l.RequestResponseLoggingFilter - [717eb391-cb49-4bce-8232-7f3f6af1da74] RESPONSE POST /api/v1/test/add | Status=200 | Duration=183ms | Body={"id":1,"name":"testname"}
+2025-10-01 09:10:05 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [9ddbfebf-0170-4483-a22c-7cf2851c74fe] REQUEST POST /api/v1/test/add | Body={
+    "name":"testname"
+}
+2025-10-01 09:10:05 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [9ddbfebf-0170-4483-a22c-7cf2851c74fe] RESPONSE POST /api/v1/test/add | Status=200 | Duration=388ms | Body={"id":1,"name":"testname"}
+2025-10-01 09:10:10 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [a5ea9e10-5849-4b51-8f00-314520b739d8] REQUEST GET /api/v1/test/1 | Body=
+2025-10-01 09:10:10 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [a5ea9e10-5849-4b51-8f00-314520b739d8] RESPONSE GET /api/v1/test/1 | Status=200 | Duration=79ms | Body={"id":1,"name":"testname"}
