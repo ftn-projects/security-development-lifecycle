@@ -62,4 +62,10 @@ public class KeyMetadata {
             rotatedAt = Instant.now();
         }
     }
+    public WrappedKey getVersion(int version) {
+        return versions.stream()
+                .filter(wk -> wk.getVersion() == version)
+                .findFirst()
+                .orElse(null);
+    }
 }
