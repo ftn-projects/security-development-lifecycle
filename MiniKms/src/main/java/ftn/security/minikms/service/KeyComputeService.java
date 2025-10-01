@@ -55,7 +55,7 @@ public class KeyComputeService {
             throws Exception {
         return hmacService.verifyHmac(message,hmacBase64, getKey(keyId, username, version));
     }
-    public KeyMaterial getKey(UUID keyId, String username, Integer version){
+    private KeyMaterial getKey(UUID keyId, String username, Integer version){
         var metadata = metadataRepository.findByIdAndUserUsername(keyId, username)
                 .orElseThrow(() -> new InvalidParameterException(NOT_AUTHORIZED_MSG));
         var wrappedKey =  version != null? metadata.getVersion(version) : metadata.getVersion(metadata.getPrimaryVersion());
