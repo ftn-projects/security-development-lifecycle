@@ -90,9 +90,4 @@ public class KeyManagementService {
         return metadataRepository.findByIdAndUserUsername(keyId, username)
                 .orElseThrow(() -> new InvalidParameterException("You do not own a key with given id"));
     }
-
-    public KeyMetadata findByIdAndUsername2(UUID keyId, String username) throws InvalidParameterException {
-        return metadataRepository.findByIdAndUsername(keyId, username)
-                .orElseThrow(() -> new InvalidParameterException("You do not own a key with given id"));
-    }
 }

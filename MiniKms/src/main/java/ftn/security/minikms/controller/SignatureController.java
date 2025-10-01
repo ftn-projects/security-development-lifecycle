@@ -1,6 +1,7 @@
 package ftn.security.minikms.controller;
 
 import ftn.security.minikms.service.SignatureService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,39 +16,19 @@ import java.util.UUID;
 @RequestMapping("/api/v1/signatures")
 public class SignatureController {
 
-    private final SignatureService cryptoService;
+    @Autowired
+    private SignatureService signatureService;
 
-    public SignatureController(SignatureService cryptoService) {
-        this.cryptoService = cryptoService;
-    }
-
-    @Transactional(readOnly = true)
     @PostMapping("/sign")
+    @Transactional(readOnly = true)
     public ResponseEntity<String> sign(@RequestParam UUID keyId,
                                        @RequestBody byte[] data,
                                        Principal principal) {
-        return null;
-    }
-
-    @PostMapping("/mac/generate")
-    public ResponseEntity<String> generateMac(@RequestParam UUID keyId,
-                                              @RequestBody byte[] message,
-                                              Principal principal) {
-        return null;
-    }
-
-    @PostMapping("/mac/verify")
-    public ResponseEntity<Boolean> verifyMac(@RequestParam UUID keyId,
-                                             @RequestBody byte[] message,
-                                             @RequestParam String mac,
-                                             Principal principal) {
-    return null;
-    }
-
-    @PostMapping("/verify-signature")
-    public ResponseEntity<Boolean> verifySignature(@RequestParam UUID keyId,
-                                                   @RequestBody byte[] message,
-                                                   @RequestParam String signature) {
-    return null;
+        try {
+            byte[] signature = signatureService.sign(keyId, data, principal.getName());
+            return ResponseEntity.ok(Base64.getEncoder().encodeToString(signature));
+        } catch (GeneralSecurityException | IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }
