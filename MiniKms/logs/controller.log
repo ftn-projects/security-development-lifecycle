@@ -20,3 +20,46 @@
 2025-10-01 09:10:05 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [9ddbfebf-0170-4483-a22c-7cf2851c74fe] RESPONSE POST /api/v1/test/add | Status=200 | Duration=388ms | Body={"id":1,"name":"testname"}
 2025-10-01 09:10:10 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [a5ea9e10-5849-4b51-8f00-314520b739d8] REQUEST GET /api/v1/test/1 | Body=
 2025-10-01 09:10:10 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [a5ea9e10-5849-4b51-8f00-314520b739d8] RESPONSE GET /api/v1/test/1 | Status=200 | Duration=79ms | Body={"id":1,"name":"testname"}
+2025-10-01 12:59:43 [https-jsse-nio-8443-exec-5] INFO  f.s.m.l.RequestResponseLoggingFilter - [538994f5-d6a5-4ef7-bc30-8b8e9717562b] REQUEST POST /api/v1/auth | Body={
+    "username":"manager",
+    "password":"manager"
+}
+2025-10-01 12:59:43 [https-jsse-nio-8443-exec-5] INFO  f.s.m.l.RequestResponseLoggingFilter - [538994f5-d6a5-4ef7-bc30-8b8e9717562b] RESPONSE POST /api/v1/auth | Status=200 | Duration=1270ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiaWF0IjoxNzU5MzE2MzgzLCJleHAiOjE3NTkzMTk5ODN9.nUIV_VWViPWQ_0-HZFoeDe-gav52eoZQiIV3o1mHmUs"}
+2025-10-01 13:03:37 [https-jsse-nio-8443-exec-2] INFO  f.s.m.l.RequestResponseLoggingFilter - [ce907961-e0ef-479d-82be-8c366c91087c] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "my-signing-key",
+  "keyType": "ASYMMETRIC",
+  "allowedOperations": ["SIGN"]
+}
+2025-10-01 13:03:37 [https-jsse-nio-8443-exec-2] INFO  f.s.m.l.RequestResponseLoggingFilter - [ce907961-e0ef-479d-82be-8c366c91087c] RESPONSE POST /api/v1/keys/create | Status=200 | Duration=570ms | Body=
+2025-10-01 13:05:08 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [14a35e71-c1ce-45f6-932a-d91640ef873c] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "my-signing-key",
+  "keyType": "ASYMMETRIC",
+  "allowedOperations": ["SIGN"]
+}
+2025-10-01 13:05:08 [https-jsse-nio-8443-exec-8] INFO  f.s.m.l.RequestResponseLoggingFilter - [14a35e71-c1ce-45f6-932a-d91640ef873c] RESPONSE POST /api/v1/keys/create | Status=200 | Duration=648ms | Body=
+2025-10-01 13:07:50 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [b8f7b334-bd93-42c1-b922-cae31ac374b0] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "my-signing-key",
+  "keyType": "ASYMMETRIC",
+  "allowedOperations": ["SIGN"]
+}
+2025-10-01 13:07:50 [https-jsse-nio-8443-exec-9] INFO  f.s.m.l.RequestResponseLoggingFilter - [b8f7b334-bd93-42c1-b922-cae31ac374b0] RESPONSE POST /api/v1/keys/create | Status=200 | Duration=2701ms | Body=
+2025-10-01 13:16:00 [https-jsse-nio-8443-exec-1] INFO  f.s.m.l.RequestResponseLoggingFilter - [476638f8-b7fb-44b1-9145-9f4e301ab93d] REQUEST POST /api/v1/keys/create | Body={
+  "id":1,
+  "alias": "my-signing-key",
+  "keyType": "ASYMMETRIC",
+  "allowedOperations": ["SIGN"]
+}
+2025-10-01 13:16:00 [https-jsse-nio-8443-exec-1] INFO  f.s.m.l.RequestResponseLoggingFilter - [476638f8-b7fb-44b1-9145-9f4e301ab93d] RESPONSE POST /api/v1/keys/create | Status=400 | Duration=13ms | Body=
+2025-10-01 13:30:48 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [abf31412-d6eb-4426-8af1-c559b30d1296] REQUEST POST /api/v1/keys/create | Body={
+  "id":1,
+  "alias": "my-signing-key",
+  "keyType": "SYMMETRIC",
+  "allowedOperations": ["SIGN"]
+}
+2025-10-01 13:30:48 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [abf31412-d6eb-4426-8af1-c559b30d1296] RESPONSE POST /api/v1/keys/create | Status=400 | Duration=2ms | Body=
+2025-10-01 13:34:47 [https-jsse-nio-8443-exec-4] INFO  f.s.m.l.RequestResponseLoggingFilter - [2870db0d-c8e3-435c-8b2c-6bd042ffa075] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "New key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 13:34:47 [https-jsse-nio-8443-exec-4] INFO  f.s.m.l.RequestResponseLoggingFilter - [2870db0d-c8e3-435c-8b2c-6bd042ffa075] RESPONSE POST /api/v1/keys/create | Status=200 | Duration=457ms | Body=
