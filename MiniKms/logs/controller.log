@@ -63,3 +63,14 @@
   "allowedOperations": ["sign"]
 }
 2025-10-01 13:34:47 [https-jsse-nio-8443-exec-4] INFO  f.s.m.l.RequestResponseLoggingFilter - [2870db0d-c8e3-435c-8b2c-6bd042ffa075] RESPONSE POST /api/v1/keys/create | Status=200 | Duration=457ms | Body=
+2025-10-01 13:35:17 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [2286dd23-2054-4267-b55a-8549b8058883] REQUEST POST /api/v1/auth | Body={
+    "username":"manager",
+    "password":"manager"
+}
+2025-10-01 13:35:17 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [2286dd23-2054-4267-b55a-8549b8058883] RESPONSE POST /api/v1/auth | Status=200 | Duration=1202ms | Body={"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyIiwiaWF0IjoxNzU5MzE4NTE3LCJleHAiOjE3NTkzMjIxMTd9.aPE9tS92q-cEpcNwpmIYsvntAWep1bbyLTnSD0m7A_0"}
+2025-10-01 13:35:54 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [0bc707bb-3cf5-4a61-abaf-74bad750e68b] REQUEST POST /api/v1/keys/create | Body={
+  "alias": "New key",
+  "keyType": "asymmetric",
+  "allowedOperations": ["sign"]
+}
+2025-10-01 13:35:54 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [0bc707bb-3cf5-4a61-abaf-74bad750e68b] RESPONSE POST /api/v1/keys/create | Status=200 | Duration=614ms | Body=
