@@ -14,3 +14,9 @@
     "name":"testname"
 }
 2025-09-30 22:08:15 [http-nio-8080-exec-1] INFO  f.s.m.l.RequestResponseLoggingFilter - [717eb391-cb49-4bce-8232-7f3f6af1da74] RESPONSE POST /api/v1/test/add | Status=200 | Duration=183ms | Body={"id":1,"name":"testname"}
+2025-10-01 09:10:05 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [9ddbfebf-0170-4483-a22c-7cf2851c74fe] REQUEST POST /api/v1/test/add | Body={
+    "name":"testname"
+}
+2025-10-01 09:10:05 [https-jsse-nio-8443-exec-6] INFO  f.s.m.l.RequestResponseLoggingFilter - [9ddbfebf-0170-4483-a22c-7cf2851c74fe] RESPONSE POST /api/v1/test/add | Status=200 | Duration=388ms | Body={"id":1,"name":"testname"}
+2025-10-01 09:10:10 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [a5ea9e10-5849-4b51-8f00-314520b739d8] REQUEST GET /api/v1/test/1 | Body=
+2025-10-01 09:10:10 [https-jsse-nio-8443-exec-7] INFO  f.s.m.l.RequestResponseLoggingFilter - [a5ea9e10-5849-4b51-8f00-314520b739d8] RESPONSE GET /api/v1/test/1 | Status=200 | Duration=79ms | Body={"id":1,"name":"testname"}
