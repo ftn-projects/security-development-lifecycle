@@ -1,0 +1,48 @@
+<div class="crypto-form">
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Message</mat-label>
+    <textarea matInput rows="4" [(ngModel)]="message"></textarea>
+  </mat-form-field>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="flex-2">
+      <mat-label>Key ID (UUID)</mat-label>
+      <input matInput [(ngModel)]="keyId">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex-1">
+      <mat-label>Version</mat-label>
+      <input matInput type="number" [(ngModel)]="version">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Encrypt Type</mat-label>
+    <mat-select [(ngModel)]="encryptType">
+      <mat-option value="SYMMETRIC">Symmetric</mat-option>
+      <mat-option value="ASYMMETRIC">Asymmetric</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>HMAC (Base64)</mat-label>
+    <textarea matInput rows="2" [(ngModel)]="hmacBase64"></textarea>
+  </mat-form-field>
+
+  <div class="row buttons">
+    <button mat-raised-button color="primary" (click)="doEncrypt()">Encrypt</button>
+    <button mat-raised-button color="accent" (click)="doDecrypt()">Decrypt</button>
+    <button mat-raised-button color="primary" (click)="computeHmac()">Compute HMAC</button>
+    <button mat-raised-button color="accent" (click)="verifyHmac()">Verify HMAC</button>
+  </div>
+
+  <div class="result-box" *ngIf="result">
+    <mat-card>
+      <mat-card-title>Result</mat-card-title>
+      <mat-card-content>{{ result }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+</div>

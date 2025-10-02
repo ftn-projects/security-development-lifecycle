@@ -1,0 +1,45 @@
+<configuration>
+
+    <appender name="CONTROLLER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/controller.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/controller-%d{yyyy-MM-dd}.%i.json.gz</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+        </encoder>
+    </appender>
+
+
+    <logger name="ftn.security.minikms.logging.RequestResponseLoggingFilter" level="INFO" additivity="false">
+        <appender-ref ref="CONTROLLER"/>
+    </logger>
+
+    <appender name="ENTITY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/entity.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/entity-%d{yyyy-MM-dd}.%i.json.gz</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <logger name="ftn.security.minikms.logging.EntityLogger" level="INFO" additivity="false">
+        <appender-ref ref="ENTITY"/>
+    </logger>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>
