@@ -2,6 +2,7 @@ package ftn.security.minikms.entity;
 
 import ftn.security.minikms.enumeration.KeyOperation;
 import ftn.security.minikms.enumeration.KeyType;
+import ftn.security.minikms.logging.EntityLogger;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "keys")
+@EntityListeners(EntityLogger.class)
 public class KeyMetadata {
     @EqualsAndHashCode.Include
     @Id

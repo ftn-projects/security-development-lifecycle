@@ -35,7 +35,7 @@ public class SignatureController {
 
     @PostMapping("/verify")
     @Transactional(readOnly = true)
-    public ResponseEntity<String> verify(@RequestParam UUID keyId,
+    public ResponseEntity<?> verify(@RequestParam UUID keyId,
                                          @RequestParam(required = false) Integer version,
                                          @RequestBody VerifyRequestDTO req) {
         try {
@@ -45,7 +45,7 @@ public class SignatureController {
                     Base64.getDecoder().decode(req.getSignature()),
                     version
             );
-            return ResponseEntity.ok(valid ? "VALID" : "INVALID");
+            return ResponseEntity.ok(valid);
         } catch (GeneralSecurityException | IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
