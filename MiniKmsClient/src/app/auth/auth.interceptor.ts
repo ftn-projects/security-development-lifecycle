@@ -16,11 +16,22 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     });
   }
 
+    console.log('Outgoing request:', {
+    url: authReq.url,
+    method: authReq.method,
+    headers: authReq.headers.keys().reduce((acc, key) => {
+      acc[key] = authReq.headers.get(key);
+      return acc;
+    }, {} as any),
+    body: authReq.body,
+    params: authReq.params.toString()
+  });
+
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401 || error.status === 403) {
-        localStorage.removeItem('token');
-        router.navigate(['/login']);
+        // localStorage.removeItem('token');
+        // router.navigate(['/login']);
       }
       return throwError(() => error);
     })

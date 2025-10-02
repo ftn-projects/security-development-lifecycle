@@ -1,0 +1,44 @@
+<div class="signature-form">
+
+  <!-- Message -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Message</mat-label>
+    <textarea matInput rows="4" [(ngModel)]="message"></textarea>
+  </mat-form-field>
+
+  <!-- Key ID + Version -->
+  <div class="row">
+    <mat-form-field appearance="outline" class="flex-2">
+      <mat-label>Key ID (UUID)</mat-label>
+      <input matInput [(ngModel)]="keyId">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex-1">
+      <mat-label>Version (optional)</mat-label>
+      <input matInput type="number" [(ngModel)]="version">
+    </mat-form-field>
+  </div>
+
+  <!-- Signature Base64 -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Signature (Base64)</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="signatureBase64"></textarea>
+  </mat-form-field>
+
+  <!-- Buttons -->
+  <div class="row buttons">
+    <button mat-raised-button color="primary" (click)="doSign()">Sign</button>
+    <button mat-raised-button color="accent" (click)="doVerify()">Verify</button>
+  </div>
+
+  <!-- Result -->
+  <div class="result-box" *ngIf="result">
+    <mat-card>
+      <mat-card-title>Result</mat-card-title>
+      <mat-card-content>{{ result }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Loading -->
+  <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+</div>

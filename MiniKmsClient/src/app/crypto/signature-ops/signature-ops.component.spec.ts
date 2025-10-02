@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CryptoComponent } from './crypto.component';
+import { SignatureOpsComponent } from './signature-ops.component';
 
-describe('CryptoComponent', () => {
-  let component: CryptoComponent;
-  let fixture: ComponentFixture<CryptoComponent>;
+describe('SignatureOpsComponent', () => {
+  let component: SignatureOpsComponent;
+  let fixture: ComponentFixture<SignatureOpsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CryptoComponent]
+      declarations: [SignatureOpsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CryptoComponent);
+    fixture = TestBed.createComponent(SignatureOpsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

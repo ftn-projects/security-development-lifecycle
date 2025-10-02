@@ -8,16 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ManageKeysComponent } from './manage-keys/manage-keys.component';
-import { CryptoComponent } from './crypto/crypto.component';
 import { MaterialModule } from './common/material/material.module';
 import { AuthInterceptorService } from './auth/auth.interceptor';
+import { CryptoOpsComponent } from './crypto/crypto-ops/crypto-ops.component';
+import { SignatureOpsComponent } from './crypto/signature-ops/signature-ops.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ManageKeysComponent,
-    CryptoComponent
+    CryptoOpsComponent,
+    SignatureOpsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
 export interface LoginRequest {
@@ -25,13 +25,13 @@ export interface KeyMetadata {
 export interface CryptoDTO {
   message: string;
   keyId: string;
-  version: number;
+  version: number | null;
   hmacBase64: string | null;
 }
 
 export interface SignRequestDTO{
   message: string;
-  version: number;
+  version: number | null;
 }
 
 export interface VerifyRequestDTO{
@@ -69,54 +69,60 @@ export class ApiService {
     return this.http.delete<void>(`${this.baseUrl}/keys/${id}`);
   }
 
-  encrypt(cryptoDTO: CryptoDTO, encryptType: EncryptType): Observable<String>{
-    return(
-    encryptType == 'SYMMETRIC' ?
-      this.http.post<String>(`${this.baseUrl}/crypto/encrypt/symmetric`, cryptoDTO)
-      :
-      this.http.post<String>(`${this.baseUrl}/crypto/encrypt/asymmetric`, cryptoDTO)
-    )
+  encrypt(cryptoDTO: CryptoDTO, encryptType: EncryptType): Observable<string> {
+    const url = encryptType === 'SYMMETRIC' 
+      ? `${this.baseUrl}/crypto/encrypt/symmetric`
+      : `${this.baseUrl}/crypto/encrypt/asymmetric`;
+
+    return this.http.post(url, cryptoDTO, { responseType: 'text' });
   }
 
-  decrypt(cryptoDTO: CryptoDTO, encryptType: EncryptType): Observable<String>{
-    return(
-    encryptType == 'SYMMETRIC' ?
-      this.http.post<String>(`${this.baseUrl}/crypto/decrypt/symmetric`, cryptoDTO)
-      :
-      this.http.post<String>(`${this.baseUrl}/crypto/decrypt/asymmetric`, cryptoDTO)
-    )
+  decrypt(cryptoDTO: CryptoDTO, encryptType: EncryptType): Observable<string> {
+    const url = encryptType === 'SYMMETRIC' 
+      ? `${this.baseUrl}/crypto/decrypt/symmetric`
+      : `${this.baseUrl}/crypto/decrypt/asymmetric`;
+
+    return this.http.post(url, cryptoDTO, { responseType: 'text' });
   }
 
-  computeHmac(cryptoDTO: CryptoDTO) : Observable<String>{
-    return this.http.post<String>(`${this.baseUrl}/crypto/compute/hmac`, cryptoDTO)
+  computeHmac(cryptoDTO: CryptoDTO): Observable<string> {
+    return this.http.post(`${this.baseUrl}/crypto/compute/hmac`, cryptoDTO, { responseType: 'text' });
   }
 
-  verifyHmac(cryptoDTO: CryptoDTO) : Observable<String>{
-    return this.http.post<String>(`${this.baseUrl}/crypto/verify/hmac`, cryptoDTO)
+  verifyHmac(cryptoDTO: CryptoDTO): Observable<boolean> {
+    return this.http.post(`${this.baseUrl}/crypto/verify/hmac`, cryptoDTO, { responseType: 'text' })
+      .pipe(
+        map(res => res === 'true') // convert "true"/"false" string into boolean
+      );
   }
 
-  sign(keyId: number, signRequestDTO: SignRequestDTO): Observable<string> {
-  return this.http.post<string>(
-    `${this.baseUrl}/signature/sign`,
-    signRequestDTO,
-    { params: { keyId: keyId.toString() } }
-  );
-}
 
-  verify(
-    keyId: number,
-    verifyRequestDTO: VerifyRequestDTO,
-    version: number | null
-  ): Observable<string> {
-    let params: any = { keyId: keyId.toString() };
+  sign(keyId: string, signRequestDTO: SignRequestDTO): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}/signatures/sign`,
+      signRequestDTO,
+      {
+        params: { keyId },
+        responseType: 'text' // <-- treat response as plain text
+      }
+    );
+  }
+
+  verify(keyId: string, verifyRequestDTO: VerifyRequestDTO, version: number | null): Observable<boolean> {
+    const params: any = { keyId };
     if (version !== null) {
       params.version = version.toString();
     }
 
-    return this.http.post<string>(
-      `${this.baseUrl}/signature/verify`,
+    return this.http.post(
+      `${this.baseUrl}/signatures/verify`,
       verifyRequestDTO,
-      { params }
+      {
+        params,
+        responseType: 'text' // <-- treat response as plain text
+      }
+    ).pipe(
+      map(res => res === 'true') // convert "true"/"false" string into boolean
     );
   }
 }
