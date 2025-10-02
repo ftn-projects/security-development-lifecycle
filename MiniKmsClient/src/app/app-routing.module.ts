@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './auth/auth.guard';
 import { ManageKeysComponent } from './manage-keys/manage-keys.component';
 import { LoginComponent } from './login/login.component';
-import { CryptoComponent } from './crypto/crypto.component';
+import { CryptoOpsComponent } from './crypto/crypto-ops/crypto-ops.component';
+import { SignatureOpsComponent } from './crypto/signature-ops/signature-ops.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,7 +17,13 @@ const routes: Routes = [
   },
   { 
     path: 'crypto', 
-    component: CryptoComponent,
+    component: CryptoOpsComponent,
+    canActivate: [authGuard],
+    data: { roles: ['manager', 'user'] }
+  },
+    { 
+    path: 'sertificates', 
+    component: SignatureOpsComponent,
     canActivate: [authGuard],
     data: { roles: ['manager', 'user'] }
   },
