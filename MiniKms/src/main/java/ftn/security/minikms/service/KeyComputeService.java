@@ -1,6 +1,7 @@
 package ftn.security.minikms.service;
 
 import ftn.security.minikms.entity.KeyMaterial;
+import ftn.security.minikms.enumeration.KeyType;
 import ftn.security.minikms.repository.KeyMetadataRepository;
 import ftn.security.minikms.repository.WrappedKeyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,20 @@ public class KeyComputeService {
         var wrappedKey = keyRepository.findByMetadataIdAndVersion(keyId, version)
                 .orElseThrow(() -> new InvalidParameterException("Key with given id and version does not exist"));
 
-        return wrappedKey.getWrappedMaterial();
+        if (metadata.getKeyType().equals(KeyType.HMAC))
+            return wrappedKey.getWrappedMaterial();
+        try {
+            byte[] unwrappedKey = rootKeyManager.unwrap(
+                    wrappedKey.getWrappedMaterial().getKey(), keyId, version
+            );
+
+            KeyMaterial material = new KeyMaterial();
+            material.setKey(unwrappedKey);
+            material.setPublicKey(wrappedKey.getWrappedMaterial().getPublicKey());
+            return material;
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException("Failed to unwrap key material", e);
+        }
     }
 
     public KeyMaterial getKeySig(UUID keyId, Integer version) {
