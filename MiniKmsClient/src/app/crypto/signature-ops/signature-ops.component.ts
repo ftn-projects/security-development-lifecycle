@@ -27,7 +27,6 @@ export class SignatureOpsComponent {
       next: res => {
         console.log("YEEEEY");
         this.result = res;
-        this.signatureBase64 = res; // auto-fill so user can verify
         this.isLoading = false;
       },
       error: (err) => {this.isLoading = false; console.log("Noooo"); console.log(err);}

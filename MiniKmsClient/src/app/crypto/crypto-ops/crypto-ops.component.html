@@ -1,12 +1,10 @@
 <div class="crypto-form">
 
-  <!-- Message input -->
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Message</mat-label>
     <textarea matInput rows="4" [(ngModel)]="message"></textarea>
   </mat-form-field>
 
-  <!-- Key ID + Version -->
   <div class="row">
     <mat-form-field appearance="outline" class="flex-2">
       <mat-label>Key ID (UUID)</mat-label>
@@ -19,7 +17,6 @@
     </mat-form-field>
   </div>
 
-  <!-- Encrypt Type -->
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Encrypt Type</mat-label>
     <mat-select [(ngModel)]="encryptType">
@@ -28,13 +25,11 @@
     </mat-select>
   </mat-form-field>
 
-  <!-- HMAC Base64 -->
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>HMAC (Base64)</mat-label>
     <textarea matInput rows="2" [(ngModel)]="hmacBase64"></textarea>
   </mat-form-field>
 
-  <!-- Buttons -->
   <div class="row buttons">
     <button mat-raised-button color="primary" (click)="doEncrypt()">Encrypt</button>
     <button mat-raised-button color="accent" (click)="doDecrypt()">Decrypt</button>
@@ -42,7 +37,6 @@
     <button mat-raised-button color="accent" (click)="verifyHmac()">Verify HMAC</button>
   </div>
 
-  <!-- Result -->
   <div class="result-box" *ngIf="result">
     <mat-card>
       <mat-card-title>Result</mat-card-title>
@@ -50,6 +44,5 @@
     </mat-card>
   </div>
 
-  <!-- Loading -->
   <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
 </div>
